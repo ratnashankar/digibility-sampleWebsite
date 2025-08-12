@@ -16,7 +16,7 @@ export default function Pricing() {
         </ul>
         <div className='text-lg mt-5 flex' >
           <img src="" alt="Content Calendar Demo" />
-          <button class="bg-[#00e676] hover:bg-[#00bfff] border-none px-6 py-2 ml-3 mt-[-5px] text-white font-bold cursor-pointer transition-colors duration-300 m-0 p-0 text-[15px] w-[65vw] sm:w-[193px] sm:h-[45px] lg:w-[20%] h-[45px] rounded-lg">
+          <button class="bg-[#00e676] hover:bg-[#00bfff] border-none ml-3 mt-[-5px] text-white font-bold cursor-pointer transition-colors duration-300 m-0 p-0 text-[15px] w-[65vw] sm:w-[193px] sm:h-[45px] lg:w-[20%] h-[45px] rounded-lg">
             Get Early Access</button>
         </div>
       </div>
