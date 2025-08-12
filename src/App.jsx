@@ -4,6 +4,8 @@ import Hero from './components/Hero'
 import Features from './components/Features'
 import Pricing from './components/Pricing'
 import Footer from './components/Footer'
+import Working from'./components/Working'
+import BuiltFor from './components/BuiltFor'
 
 export default function App() {
   return (
@@ -13,6 +15,8 @@ export default function App() {
         <Hero />
         <Features />
         <Pricing />
+        <Working/>
+        <BuiltFor/>
       </main>
       <Footer />
     </div>

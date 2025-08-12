@@ -1,30 +1,23 @@
 import React from 'react'
 const plans = [
-  {name:'Starter', price:'$29', bullets:['1 user','Basic analytics']},
-  {name:'Team', price:'$99', bullets:['5 users','Scheduling & approvals']},
-  {name:'Agency', price:'Custom', bullets:['Unlimited users','Priority support']}
+  { name: 'Starter', price: '$29', bullets: ['1 user', 'Basic analytics'] },
+  { name: 'Team', price: '$99', bullets: ['5 users', 'Scheduling & approvals'] },
+  { name: 'Agency', price: 'Custom', bullets: ['Unlimited users', 'Priority support'] }
 ]
-export default function Pricing(){
+export default function Pricing() {
   return (
-    <section id="pricing" className="py-16 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-2xl font-bold">Pricing</h2>
-        <p className="mt-3 text-gray-600">Simple pricing for teams of any size.</p>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {plans.map((p, i) => (
-            <div key={i} className="p-6 bg-white rounded-lg border shadow-sm">
-              <div className="flex items-baseline justify-between">
-                <h3 className="text-lg font-semibold">{p.name}</h3>
-                <div className="text-2xl font-bold">{p.price}</div>
-              </div>
-              <ul className="mt-4 text-sm text-gray-600 space-y-2">
-                {p.bullets.map((b, idx) => <li key={idx}>• {b}</li>)}
-              </ul>
-              <div className="mt-6">
-                <a href="#" className="block text-center px-4 py-2 rounded-md bg-cyan-500 text-white">Choose</a>
-              </div>
-            </div>
-          ))}
+    <section id="pricing" className=" mb-10 ">
+      <div className="ml-[10vw] mx-auto bg-slate-50 px-6 h-fit py-20 w-[80vw]">
+        <h1 className='text-[36px] font-[700]   ' >Imagine This… ✨</h1>
+        <ul className='list-disc text-[17px]' >
+          <li>✅ Your content calendar builds itself</li>
+          <li>✅ Posts designed, written, and scheduled automatically</li>
+          <li>✅ Real-time strategy adjustments based on performance</li>
+        </ul>
+        <div className='text-lg mt-5 flex' >
+          <img src="" alt="Content Calendar Demo" />
+          <button class="bg-[#00e676] hover:bg-[#00bfff] border-none px-6 py-2 ml-3 mt-[-5px] text-white font-bold cursor-pointer transition-colors duration-300 m-0 p-0 text-[15px]  sm:w-[193px] sm:h-[45px] w-[80%] h-[45px] rounded-lg">
+            Get Early Access</button>
         </div>
       </div>
     </section>

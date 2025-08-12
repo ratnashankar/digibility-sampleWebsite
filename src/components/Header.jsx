@@ -1,30 +1,59 @@
-import React from 'react'
-export default function Header(){
+import React, { useState } from 'react';
+import logo from "../assets/digibility logo light background.png";
+
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <header className="bg-white shadow-sm fixed w-full h-[10vh] z-50">
+      <div className=" px-10 py-4 flex items-center justify-between">
+        
         <a href="#" className="flex items-center gap-3">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="24" height="24" rx="6" fill="#06B6D4"/>
-            <path d="M7 12h10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <span className="font-semibold text-lg">StoryReplica</span>
+          <img className="w-[20vh]" src={logo} alt="Digibility logo" />
         </a>
-        <nav className="hidden md:flex items-center gap-6 text-sm text-gray-600">
-          <a href="#features" className="hover:text-gray-900">Features</a>
+
+        <nav className="hidden md:flex items-center gap-6 text-[18px] font-bold text-black">
+          <a href="#features" className="hover:text-gray-900">About</a>
           <a href="#pricing" className="hover:text-gray-900">Pricing</a>
-          <a href="#resources" className="hover:text-gray-900">Resources</a>
-          <a href="#" className="px-4 py-2 rounded-md border border-gray-200">Log in</a>
-          <a href="#" className="px-4 py-2 rounded-md bg-cyan-500 text-white shadow">Get started</a>
+          <a href="#Customers" className="hover:text-gray-900">Roadmap</a>
+          <a href="#resources" className="hover:text-gray-900">Careers</a>
+          <a href="#contact" className="hover:text-gray-900">Contact</a>
+          <a href="#login" className="hover:text-gray-900">Login</a>
         </nav>
+
         <div className="md:hidden">
-          <button aria-label="open menu" className="p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M4 6h16M4 12h16M4 18h16" stroke="#111827" strokeWidth="1.5" strokeLinecap="round"/>
+          <button
+            aria-label="open menu"
+            className="p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M4 6h16M4 12h16M4 18h16"
+                stroke="#111827"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
             </svg>
           </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <div className="md:hidden bg-white shadow-lg px-6 py-4 flex flex-col gap-4 text-[18px] font-bold text-black">
+          <a href="#features" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
+          <a href="#Customers" onClick={() => setMenuOpen(false)}>Roadmap</a>
+          <a href="#resources" onClick={() => setMenuOpen(false)}>Careers</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <a href="#login" onClick={() => setMenuOpen(false)}>Login</a>
+        </div>
+      )}
     </header>
-  )
+  );
 }

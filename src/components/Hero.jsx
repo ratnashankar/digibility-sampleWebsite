@@ -1,33 +1,53 @@
 import React from 'react'
-export default function Hero(){
+
+export default function Hero() {
   return (
-    <section className="bg-gradient-to-b from-white to-slate-50">
-      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
-            Create content that converts — faster
-          </h1>
-          <p className="mt-6 text-lg text-gray-600">
-            Write, optimize and publish content across multiple channels.
-            Collaborate with your team and analyze results in one place.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="#" className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-cyan-500 text-white font-semibold shadow">Start free trial</a>
-            <a href="#" className="inline-flex items-center justify-center px-6 py-3 rounded-md border border-gray-200">Book a demo</a>
-          </div>
-          <div className="mt-6 text-sm text-gray-500">No credit card required • 14-day trial</div>
+    <section>
+      <div className="py-[8vh] pb-[10vh] text-white bg-gradient-to-br from-blue-500 to-purple-700 
+                      w-[100vw] h-auto md:w-[90vw] md:h-[80vh] lg:w-[80vw] lg:h-[70vh] mx-auto">
+        
+        {/* Heading */}
+        <div className="heading flex text-[15vw] md:text-[6vw] lg:text-[3vw] ml-5 font-[700] 
+                        flex-col justify-items-start pl-[3vw] items-start pt-[10vh]">
+          <h1>Your Social Media, Fully Managed.</h1>
+          <h1>Without the Overwhelm.</h1>
         </div>
-        <div>
-          <div className="rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-            <div className="bg-white p-6">
-              <div className="h-48 bg-gradient-to-r from-cyan-50 to-slate-50 rounded-md flex items-center justify-center text-sm text-gray-400">Editor / Dashboard mockup</div>
-              <div className="mt-4 grid grid-cols-3 gap-3">
-                <div className="h-20 bg-gray-50 rounded-md" />
-                <div className="h-20 bg-gray-50 rounded-md" />
-                <div className="h-20 bg-gray-50 rounded-md" />
-              </div>
-            </div>
-          </div>
+
+        {/* Subheading */}
+        <div className="subheading text-[6vw] md:text-[2.5vw] lg:text-[1.5vw] mx-5 font-[700] 
+                        flex flex-col justify-items-start pl-[3vw] items-start pt-[2vh] max-w-[90%]">
+          <p>
+            Plan, create, schedule, and optimize — all without chasing freelancers or managing a <br className="hidden md:block" /> dozen tools. 🚀
+          </p>
+        </div>
+
+        {/* Buttons */}
+        <div className="buttons flex gap-2 md:gap-4 lg:gap-5 ml-3 justify-start items-center 
+                        pt-[3vh] pl-[3vw] flex-wrap md:flex-nowrap">
+          <a
+            href="#"
+            className="bg-[#00e676] hover:bg-green-500 px-6 py-3 rounded-lg text-white font-bold 
+                       transition-colors duration-300 text-[4vw] md:text-[1.5vw] lg:text-[1vw]"
+          >
+            Join Early Access
+          </a>
+          <a
+            href="#"
+            className="bg-transparent hover:bg-white border-2 hover:text-blue-700 px-3 pr-4 rounded-lg 
+                       text-white font-bold transition-colors duration-300 flex items-center gap-2 
+                       text-[4vw] md:text-[1.5vw] lg:text-[1vw]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <polygon points="10,8 16,12 10,16" fill="currentColor" />
+            </svg>
+            See How It Works
+          </a>
         </div>
       </div>
     </section>
