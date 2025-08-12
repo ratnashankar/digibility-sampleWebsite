@@ -28,8 +28,8 @@ export default function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <svg
-              width="24"
-              height="24"
+              width="35"
+              height="35"
               viewBox="0 0 24 24"
               fill="none"
             >
@@ -45,7 +45,7 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-lg px-6 py-4 flex flex-col gap-4 text-[18px] font-bold text-black">
+        <div className="md:hidden  bg-white shadow-lg px-6 py-4 flex flex-col gap-4 text-[18px] font-bold text-black">
           <a href="#features" onClick={() => setMenuOpen(false)}>About</a>
           <a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a>
           <a href="#Customers" onClick={() => setMenuOpen(false)}>Roadmap</a>

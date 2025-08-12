@@ -6,14 +6,14 @@ export default function Hero() {
       <div className="py-[8vh] pb-[10vh] text-white bg-gradient-to-br from-blue-500 to-purple-700 
                       w-[100vw] h-auto md:w-[90vw] md:h-[80vh] lg:w-[80vw] lg:h-[70vh] mx-auto">
         
-        {/* Heading */}
+    
         <div className="heading flex text-[15vw] md:text-[6vw] lg:text-[3vw] ml-5 font-[700] 
                         flex-col justify-items-start pl-[3vw] items-start pt-[10vh]">
           <h1>Your Social Media, Fully Managed.</h1>
           <h1>Without the Overwhelm.</h1>
         </div>
 
-        {/* Subheading */}
+        
         <div className="subheading text-[6vw] md:text-[2.5vw] lg:text-[1.5vw] mx-5 font-[700] 
                         flex flex-col justify-items-start pl-[3vw] items-start pt-[2vh] max-w-[90%]">
           <p>
@@ -21,7 +21,6 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Buttons */}
         <div className="buttons flex gap-2 md:gap-4 lg:gap-5 ml-3 justify-start items-center 
                         pt-[3vh] pl-[3vw] flex-wrap md:flex-nowrap">
           <a

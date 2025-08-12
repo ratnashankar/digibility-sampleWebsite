@@ -2,7 +2,7 @@ import React from "react";
 
 const featuresData = [
   {
-    img: "/images/tool-icon.svg", // replace with your image path
+    img: "/images/tool-icon.svg", 
     title: "Too Many Tools",
     description: "Managing 6+ apps just to post one update.",
   },
