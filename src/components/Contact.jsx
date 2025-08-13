@@ -71,9 +71,6 @@ export default function ContactPage() {
     </div>
   )}
 </header>
-
-
-            {/* HERO */}
             <section className="bg-gradient-to-br from-[#007bff] to-[#6f42c1] text-white py-10 min-h-screen">
                 <div className="max-w-[1200px] mx-auto px-5 flex flex-col lg:flex-row gap-6 items-center">
                     <div className="flex-1">
@@ -137,12 +134,10 @@ export default function ContactPage() {
 
 
 
-            {/* FORM + ASIDE */}
             <section
                 id="support"
                 className="max-w-[1200px]  px-[11vw] py-10 flex flex-col lg:flex-row gap-6"
             >
-                {/* FORM */}
                 <div className=" min-w-[50vw] bg-white rounded-xl border p-5">
                     <h3 className="text-2xl font-bold mb-2">Send us a message</h3>
                     <p className="text-gray-600 italic mb-4">
@@ -256,9 +251,6 @@ export default function ContactPage() {
                         Something went wrong. Please try again or email support.
                     </div>
 
-
-
-                    {/* Prefer another way */}
                     <div className="mt-6 border-t pt-4 border-2 rounded-3xl px-6 py-4 " >
                         <h3 className="text-xl font-bold mb-3">Prefer another way?</h3>
                         <div className="space-y-2 text-gray-700">
@@ -295,7 +287,6 @@ export default function ContactPage() {
                         </div>
                     </div>
 
-                    {/* Quick resources */}
                     <div className="mt-6 border-t pt-4 text-[17px] flex flex-col lg:flex-row gap-5">
                         <a href="#" className="block text-blue-600 border-2  px-3 py-3  rounded-xl">
                             📘 Visit our Help Center
@@ -308,7 +299,6 @@ export default function ContactPage() {
                         </a>
                     </div>
 
-                    {/* Compliance strip */}
                     <div className="mt-6 flex flex-wrap gap-3 border-t pt-4 text-sm text-gray-600">
                         <span className="px-3 py-1 border rounded-full">🛡️ Data protected</span>
                         <span className="px-3 py-1 border rounded-full">
@@ -318,7 +308,6 @@ export default function ContactPage() {
                     </div>
                 </div>
 
-                {/* ASIDE */}
                 <div className=" bg-white w-[78vw] lg:w-[20vw] h-fit shrink-0 rounded-xl border p-5">
                     <h3 className="text-3xl font-bold mb-2">Before you write in</h3>
                     <ul className="list-disc list-inside text-gray-700 space-y-1">
@@ -398,7 +387,6 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            {/* FOOTER */}
             <footer className="border-t border-gray-300 py-5">
                 <div className="max-w-[1200px] mx-auto px-5 text-gray-600">
                     © {new Date().getFullYear()} Digibility Solutions Pvt. Ltd. ·{" "}
