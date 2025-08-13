@@ -220,8 +220,8 @@ const AboutUs = () => {
                 </div>
             </section>
 
-            <section id="what" className=" mx-auto px-[11vw] py-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <section id="what" className=" px-[11vw]  py-16 max-w-[60vw]">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 ">
                     What Is Digibility? (Plain English)
                 </h2>
                 <p className="text-gray-600 max-w-3xl">
