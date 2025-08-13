@@ -17,7 +17,7 @@ export default function Header() {
           <Link to="/" className="hover:text-gray-900">Pricing</Link>
           <Link to="/" className="hover:text-gray-900">Roadmap</Link>
           <Link to="/" className="hover:text-gray-900">Careers</Link>
-          <Link to="/" className="hover:text-gray-900">Contact</Link>
+          <Link to="/contact" className="hover:text-gray-900">Contact</Link>
           <Link to="/" className="hover:text-gray-900">Login</Link>
         </nav>
 

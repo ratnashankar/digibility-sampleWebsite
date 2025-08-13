@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Working from "./components/Working";
 import BuiltFor from "./components/BuiltFor";
 import About from "./components/About";
+import Contact from "./components/Contact";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             }
           />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
     </div>
