@@ -16,56 +16,54 @@ export default function ContactPage() {
         file: null,
         website: "",
     });
-   const onSubmit = async (e) => {
-    e.preventDefault();
+    const onSubmit = async (e) => {
+        e.preventDefault();
 
-    if (!form.name || !form.email || !form.subject || !form.message) {
-        setStatus({ ok: "", err: "Please fill all required fields." });
-        return;
-    }
-
-    try {
-        const formData = new FormData();
-        for (let key in form) {
-            formData.append(key, form[key]);
+        if (!form.name || !form.email || !form.subject || !form.message) {
+            setStatus({ ok: "", err: "Please fill all required fields." });
+            return;
         }
 
-        const res = await fetch("https://api.example.com/send-email", { // i used dummy api use actual api  that give by backend developer
-            method: "POST",
-            body: formData,
-        });
+        try {
+            const formData = new FormData();
+            for (let key in form) {
+                formData.append(key, form[key]);
+            }
 
-        if (!res.ok) {
-            throw new Error("Network response was not ok");
+            const res = await fetch("https://api.example.com/send-email", { // i used dummy api use actual api  that give by backend developer
+                method: "POST",
+                body: formData,
+            });
+
+            if (!res.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            await res.json();
+
+            setStatus({ ok: "Thanks! Your message has been sent.", err: "" });
+
+            setForm({
+                name: "",
+                email: "",
+                subject: "",
+                company: "",
+                message: "",
+                file: null,
+                website: "",
+            });
+
+        } catch (error) {
+            setStatus({
+                ok: "",
+                err: "Something went wrong. Please try again or email support.",
+            });
         }
-
-        await res.json();
-
-        setStatus({ ok: "Thanks! Your message has been sent.", err: "" });
-
-        setForm({
-            name: "",
-            email: "",
-            subject: "",
-            company: "",
-            message: "",
-            file: null,
-            website: "",
-        });
-
-    } catch (error) {
-        setStatus({
-            ok: "",
-            err: "Something went wrong. Please try again or email support.",
-        });
-    }
-};
+    };
 
 
     const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        setForm({ ...form, [name]: files ? files[0] : value });
-
+        setForm({ ...form, [e.target.name]: e.target.files?.[0] || e.target.value });
         if (status.ok || status.err) {
             setStatus({ ok: "", err: "" });
         }
@@ -208,21 +206,13 @@ export default function ContactPage() {
                                 name="file"
                                 type="file"
                                 accept="image/*,.png,.jpg,.jpeg,.webp,.pdf"
-                                className="border rounded-lg p-2 w-full"
+                                className="border rounded-lg p-2 w-full "
                                 onChange={handleChange}
                             />
                             <small className="text-gray-500 block mt-1">
                                 Max 5MB. Common types: PNG, JPG, WEBP, PDF.
                             </small>
                         </div>
-
-                        <input
-                            type="text"
-                            name="website"
-                            className="hidden"
-                            value={form.website}
-                            onChange={handleChange}
-                        />
 
                         <div className="flex gap-3 flex-wrap">
                             <button
@@ -255,14 +245,14 @@ export default function ContactPage() {
                             <SucessMsg
                                 key={status.ok + Date.now()}
                                 message={status.ok}
-                                show={!!status.ok}
+                                show={status.ok}
                             />
                         )}
                         {status.err && (
                             <ErrorMsg
                                 key={status.err + Date.now()}
                                 message={status.err}
-                                show={!!status.err}
+                                show={status.err}
                             />
                         )}
                     </form>
@@ -280,7 +270,7 @@ export default function ContactPage() {
                             <div className="flex items-center gap-2">
                                 <span>💬</span>
                                 <a
-                                    href="https://wa.me/+911234567890" // use actual company phone number with country code +91-----------
+                                    href="https://wa.me/+919272189706"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-blue-600"
