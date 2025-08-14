@@ -21,7 +21,7 @@ export default function HowItWorks() {
 
   return (
     <div className="py-10 px-5 mb-[8vh] text-center">
-      <h2 className="text-3xl font-bold text-left ml-[10vw] mb-10">
+      <h2 className="text-3xl font-bold text-left ml-[5vw] lg:ml-[10vw] mb-10">
         How It Works 🎯
       </h2>
 
