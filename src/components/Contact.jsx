@@ -16,40 +16,60 @@ export default function ContactPage() {
         file: null,
         website: "",
     });
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        try {
-            const formData = new FormData();
-            for (let key in form) {
-                formData.append(key, form[key]);
-            }
+   const onSubmit = async (e) => {
+    e.preventDefault();
 
-            const res = await fetch("https://api.example.com/send-email", { // i used dummy api use actual api  that give by backend developer
-                method: "POST",
-                body: formData,
-            });
+    if (!form.name || !form.email || !form.subject || !form.message) {
+        setStatus({ ok: "", err: "Please fill all required fields." });
+        return;
+    }
 
-            if (!res.ok) throw new Error("Network response was not ok");
-            const data = await res.json();
+    try {
+        const formData = new FormData();
+        for (let key in form) {
+            formData.append(key, form[key]);
+        }
 
-            setStatus({ ok:"Thanks! Your message has been sent.", err: "" });
+        const res = await fetch("https://api.example.com/send-email", { // i used dummy api use actual api  that give by backend developer
+            method: "POST",
+            body: formData,
+        });
 
-            setForm({
-                name: "",
-                email: "",
-                subject: "",
-                company: "",
-                message: "",
-                file: null,
-                website: "",
-            });
+        if (!res.ok) {
+            throw new Error("Network response was not ok");
+        }
 
-        } catch (error) {
-            setStatus({ ok: "", err:"Something went wrong. Please try again or email support." });
+        await res.json();
+
+        setStatus({ ok: "Thanks! Your message has been sent.", err: "" });
+
+        setForm({
+            name: "",
+            email: "",
+            subject: "",
+            company: "",
+            message: "",
+            file: null,
+            website: "",
+        });
+
+    } catch (error) {
+        setStatus({
+            ok: "",
+            err: "Something went wrong. Please try again or email support.",
+        });
+    }
+};
+
+
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+        setForm({ ...form, [name]: files ? files[0] : value });
+
+        if (status.ok || status.err) {
+            setStatus({ ok: "", err: "" });
         }
     };
-
 
     return (
         <div className="bg-white text-[#2E2E2E] flex flex-col min-h-screen ">
@@ -136,7 +156,7 @@ export default function ContactPage() {
                                 className="flex-1 border rounded-lg p-3"
                                 required
                                 value={form.name}
-                                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                                onChange={handleChange}
                             />
                             <input
                                 name="email"
@@ -145,7 +165,7 @@ export default function ContactPage() {
                                 className="flex-1 border rounded-lg p-3"
                                 required
                                 value={form.email}
-                                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                                onChange={handleChange}
                             />
                         </div>
 
@@ -155,7 +175,7 @@ export default function ContactPage() {
                                 className="flex-1 border rounded-lg p-3"
                                 required
                                 value={form.subject}
-                                onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                                onChange={handleChange}
                             >
                                 <option value="">Select a subject</option>
                                 <option>General Inquiry</option>
@@ -169,7 +189,7 @@ export default function ContactPage() {
                                 placeholder="Your business name"
                                 className="flex-1 border rounded-lg p-3"
                                 value={form.company}
-                                onChange={(e) => setForm({ ...form, company: e.target.value })}
+                                onChange={handleChange}
                             />
                         </div>
 
@@ -180,7 +200,7 @@ export default function ContactPage() {
                             className="border rounded-lg p-3"
                             required
                             value={form.message}
-                            onChange={(e) => setForm({ ...form, message: e.target.value })}
+                            onChange={handleChange}
                         />
 
                         <div>
@@ -189,7 +209,7 @@ export default function ContactPage() {
                                 type="file"
                                 accept="image/*,.png,.jpg,.jpeg,.webp,.pdf"
                                 className="border rounded-lg p-2 w-full"
-                                onChange={(e) => setForm({ ...form, file: e.target.files[0] })}
+                                onChange={handleChange}
                             />
                             <small className="text-gray-500 block mt-1">
                                 Max 5MB. Common types: PNG, JPG, WEBP, PDF.
@@ -201,7 +221,7 @@ export default function ContactPage() {
                             name="website"
                             className="hidden"
                             value={form.website}
-                            onChange={(e) => setForm({ ...form, website: e.target.value })}
+                            onChange={handleChange}
                         />
 
                         <div className="flex gap-3 flex-wrap">
@@ -213,7 +233,7 @@ export default function ContactPage() {
                             </button>
                             <button
                                 type="button"
-                                onClick={() =>{
+                                onClick={() => {
                                     setForm({
                                         name: "",
                                         email: "",
@@ -222,24 +242,31 @@ export default function ContactPage() {
                                         message: "",
                                         file: null,
                                         website: "",
-                                    })
-                                     setStatus({ ok: "", err: "" });
+                                    });
+                                    setStatus({ ok: "", err: "" });
                                 }}
                                 className="border border-blue-600 text-blue-600 px-5 py-3 rounded-lg font-bold"
                             >
                                 Reset / Clear
                             </button>
                         </div>
+
                         {status.ok && (
                             <SucessMsg
-                            key={status.ok + Date.now()}
-                                message={status.ok} show={!!status.ok}
+                                key={status.ok + Date.now()}
+                                message={status.ok}
+                                show={!!status.ok}
                             />
                         )}
-                        {status.err && <ErrorMsg
-                          key={status.err + Date.now()}  message={status.err} show={!!status.err}
-                        />}
+                        {status.err && (
+                            <ErrorMsg
+                                key={status.err + Date.now()}
+                                message={status.err}
+                                show={!!status.err}
+                            />
+                        )}
                     </form>
+
 
                     <div className="mt-6 border-t pt-4 border-2 rounded-3xl px-6 py-4">
                         <h3 className="text-xl font-bold mb-3">Prefer another way?</h3>
