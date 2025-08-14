@@ -1,77 +1,60 @@
 import React, { useState, useRef } from "react";
 import logo from "../assets/digibility logo light background.png";
+import Header from "./Header";
+import Footer from "./Footer";
+import ErrorMsg from "./ErrorMsg";
+import SucessMsg from "./SucessMsg";
 
 export default function ContactPage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-    const onSubmit = (e) => {
+    const [status, setStatus] = useState({ ok: "", err: "" })
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        company: "",
+        message: "",
+        file: null,
+        website: "",
+    });
+    const onSubmit = async (e) => {
         e.preventDefault();
-       
-    };
-     const handleScroll = (e) => {
-        const element = document.getElementById(e);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+        const formData = new FormData(e.target);
+        try {
+            const formData = new FormData();
+            for (let key in form) {
+                formData.append(key, form[key]);
+            }
+
+            const res = await fetch("https://api.example.com/send-email", { // i used dummy api use actual api  that give by backend developer
+                method: "POST",
+                body: formData,
+            });
+
+            if (!res.ok) throw new Error("Network response was not ok");
+            const data = await res.json();
+
+            setStatus({ ok:"Thanks! Your message has been sent.", err: "" });
+
+            setForm({
+                name: "",
+                email: "",
+                subject: "",
+                company: "",
+                message: "",
+                file: null,
+                website: "",
+            });
+
+        } catch (error) {
+            setStatus({ ok: "", err:"Something went wrong. Please try again or email support." });
         }
     };
 
+
     return (
-        <div className="bg-white text-[#2E2E2E] flex flex-col min-h-screen mt-10">
-          <header className="z-40 bg-white border-b border-gray-200 fixed top-0 w-full px-[5vw] py-2 text-xl">
-  <div className="max-w-[1200px] mx-auto px-5 flex justify-between items-center">
-    <div className="flex items-center">
-      <img src={logo} alt="Digibility logo" className="h-10" />
-    </div>
-
-    <nav className="hidden md:flex gap-6 font-medium">
-      <a href="#support">Support</a>
-      <a href="#sales">Sales</a>
-      <a href="#press">Press</a>
-      <a href="#faq">FAQs</a>
-    </nav>
-
-    <div className="md:hidden">
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="focus:outline-none p-2 border rounded-lg"
-        aria-label="Toggle menu"
-      >
-        <svg
-          className="w-6 h-6 text-gray-700"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {menuOpen ? (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          ) : (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          )}
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  {menuOpen && (
-    <div className="md:hidden bg-white border-t border-gray-200 w-full px-5 py-3 absolute top-full left-0">
-      <a  href="#support" className="block py-2">Support</a>
-      <a href="#sales" className="block py-2">Sales</a>
-      <a href="#press" className="block py-2">Press</a>
-      <a href="#faq" className="block py-2">FAQs</a>
-    </div>
-  )}
-</header>
-            <section className="bg-gradient-to-br from-[#007bff] to-[#6f42c1] text-white py-10 min-h-screen">
+        <div className="bg-white text-[#2E2E2E] flex flex-col min-h-screen ">
+            <Header />
+            <section className="bg-gradient-to-br from-[#007bff] to-[#6f42c1] text-white py-10 min-h-screen pt-[13vh]">
                 <div className="max-w-[1200px] mx-auto px-5 flex flex-col lg:flex-row gap-6 items-center">
                     <div className="flex-1">
                         <h1 className="text-4xl lg:text-5xl font-bold mb-3 leading-tight">
@@ -136,14 +119,15 @@ export default function ContactPage() {
 
             <section
                 id="support"
-                className="max-w-[1200px]  px-[11vw] py-10 flex flex-col lg:flex-row gap-6"
+                className="max-w-[1200px] px-[11vw] py-10 flex flex-col lg:flex-row gap-6"
             >
-                <div className=" min-w-[50vw] bg-white rounded-xl border p-5">
+                <div className="min-w-[50vw] bg-white rounded-xl border p-5">
                     <h3 className="text-2xl font-bold mb-2">Send us a message</h3>
                     <p className="text-gray-600 italic mb-4">
                         We reply within 1–2 business days. For urgent issues, email support
                         directly.
                     </p>
+
                     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
                         <div className="flex flex-col md:flex-row gap-4">
                             <input
@@ -151,6 +135,8 @@ export default function ContactPage() {
                                 placeholder="Jane Doe"
                                 className="flex-1 border rounded-lg p-3"
                                 required
+                                value={form.name}
+                                onChange={(e) => setForm({ ...form, name: e.target.value })}
                             />
                             <input
                                 name="email"
@@ -158,13 +144,18 @@ export default function ContactPage() {
                                 placeholder="you@company.com"
                                 className="flex-1 border rounded-lg p-3"
                                 required
+                                value={form.email}
+                                onChange={(e) => setForm({ ...form, email: e.target.value })}
                             />
                         </div>
+
                         <div className="flex flex-col md:flex-row gap-4">
                             <select
                                 name="subject"
                                 className="flex-1 border rounded-lg p-3"
                                 required
+                                value={form.subject}
+                                onChange={(e) => setForm({ ...form, subject: e.target.value })}
                             >
                                 <option value="">Select a subject</option>
                                 <option>General Inquiry</option>
@@ -177,31 +168,42 @@ export default function ContactPage() {
                                 name="company"
                                 placeholder="Your business name"
                                 className="flex-1 border rounded-lg p-3"
+                                value={form.company}
+                                onChange={(e) => setForm({ ...form, company: e.target.value })}
                             />
                         </div>
+
                         <textarea
                             name="message"
                             rows={6}
                             placeholder="How can we help? Please include any useful details."
                             className="border rounded-lg p-3"
                             required
+                            value={form.message}
+                            onChange={(e) => setForm({ ...form, message: e.target.value })}
                         />
+
                         <div>
                             <input
                                 name="file"
                                 type="file"
                                 accept="image/*,.png,.jpg,.jpeg,.webp,.pdf"
                                 className="border rounded-lg p-2 w-full"
+                                onChange={(e) => setForm({ ...form, file: e.target.files[0] })}
                             />
                             <small className="text-gray-500 block mt-1">
                                 Max 5MB. Common types: PNG, JPG, WEBP, PDF.
                             </small>
                         </div>
+
                         <input
                             type="text"
                             name="website"
                             className="hidden"
+                            value={form.website}
+                            onChange={(e) => setForm({ ...form, website: e.target.value })}
                         />
+
                         <div className="flex gap-3 flex-wrap">
                             <button
                                 type="submit"
@@ -210,8 +212,8 @@ export default function ContactPage() {
                                 Send Message
                             </button>
                             <button
-                                type="reset"
-                                onClick={() =>
+                                type="button"
+                                onClick={() =>{
                                     setForm({
                                         name: "",
                                         email: "",
@@ -221,37 +223,25 @@ export default function ContactPage() {
                                         file: null,
                                         website: "",
                                     })
-                                }
+                                     setStatus({ ok: "", err: "" });
+                                }}
                                 className="border border-blue-600 text-blue-600 px-5 py-3 rounded-lg font-bold"
                             >
                                 Reset / Clear
                             </button>
                         </div>
                         {status.ok && (
-                            <div className="bg-green-50 text-green-800 border border-green-300 p-3 rounded-lg">
-                                {status.ok}
-                            </div>
+                            <SucessMsg
+                            key={status.ok + Date.now()}
+                                message={status.ok} show={!!status.ok}
+                            />
                         )}
-                        {status.err && (
-                            <div className="bg-red-50 text-red-800 border border-red-300 p-3 rounded-lg">
-                                {status.err}
-                            </div>
-                        )}
+                        {status.err && <ErrorMsg
+                          key={status.err + Date.now()}  message={status.err} show={!!status.err}
+                        />}
                     </form>
-                    <div
-                        role="status"
-                        className="block bg-[#E8F5E9] text-[#1B5E20] border border-[#B2DFDB] p-3 my-5 rounded-lg"
-                    >
-                        Thanks! Your message has been sent.
-                    </div>
-                    <div
-                        role="status"
-                        className="block bg-[#FDECEA] text-[#611A15] border border-[#F5C6CB] p-3 my-5 rounded-lg"
-                    >
-                        Something went wrong. Please try again or email support.
-                    </div>
 
-                    <div className="mt-6 border-t pt-4 border-2 rounded-3xl px-6 py-4 " >
+                    <div className="mt-6 border-t pt-4 border-2 rounded-3xl px-6 py-4">
                         <h3 className="text-xl font-bold mb-3">Prefer another way?</h3>
                         <div className="space-y-2 text-gray-700">
                             <div className="flex items-center gap-2">
@@ -261,14 +251,9 @@ export default function ContactPage() {
                                 </a>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span>📞</span>
-                                <a href="tel:+10000000000" className="text-blue-600">
-                                    Call us
-                                </a>
-                                <span>·</span>
                                 <span>💬</span>
                                 <a
-                                    href="https://wa.me/10000000000"
+                                    href="https://wa.me/+911234567890" // use actual company phone number with country code +91-----------
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-blue-600"
@@ -277,10 +262,18 @@ export default function ContactPage() {
                                 </a>
                             </div>
                             <div className="flex gap-3 mt-2">
-                                <a href="#"  aria-label="LinkedIn" className="text-blue-600 border-2 rounded-xl bg-[#eef5ff] h-[36px] w-[36px] px-[11px] py-1 ">
+                                <a
+                                    href="#"
+                                    aria-label="LinkedIn"
+                                    className="text-blue-600 border-2 rounded-xl bg-[#eef5ff] h-[36px] w-[36px] px-[11px] py-1"
+                                >
                                     in
                                 </a>
-                                <a href="#"  aria-label="Twitter/X" className="text-blue-600 border-2 rounded-xl bg-[#eef5ff] h-[36px] w-[36px] px-[12px] py-1 ">
+                                <a
+                                    href="#"
+                                    aria-label="Twitter/X"
+                                    className="text-blue-600 border-2 rounded-xl bg-[#eef5ff] h-[36px] w-[36px] px-[12px] py-1"
+                                >
                                     X
                                 </a>
                             </div>
@@ -288,13 +281,22 @@ export default function ContactPage() {
                     </div>
 
                     <div className="mt-6 border-t pt-4 text-[17px] flex flex-col lg:flex-row gap-5">
-                        <a href="#" className="block text-blue-600 border-2  px-3 py-3  rounded-xl">
+                        <a
+                            href="#"
+                            className="block text-blue-600 border-2 px-3 py-3 rounded-xl"
+                        >
                             📘 Visit our Help Center
                         </a>
-                        <a href="#" className="block text-blue-600 border-2  px-3 py-3  rounded-xl">
+                        <a
+                            href="#"
+                            className="block text-blue-600 border-2 px-3 py-3 rounded-xl"
+                        >
                             🎫 Open a Support Ticket
                         </a>
-                        <a href="#" className="block text-blue-600 border-2  px-3 py-3  rounded-xl">
+                        <a
+                            href="#"
+                            className="block text-blue-600 border-2 px-3 py-3 rounded-xl"
+                        >
                             💼 Careers / Join the Team
                         </a>
                     </div>
@@ -308,7 +310,7 @@ export default function ContactPage() {
                     </div>
                 </div>
 
-                <div className=" bg-white w-[78vw] lg:w-[20vw] h-fit shrink-0 rounded-xl border p-5">
+                <div className="bg-white w-[78vw] lg:w-[20vw] h-fit shrink-0 rounded-xl border p-5">
                     <h3 className="text-3xl font-bold mb-2">Before you write in</h3>
                     <ul className="list-disc list-inside text-gray-700 space-y-1">
                         <li>Looking for pricing? See our plans or ask Sales.</li>
@@ -339,6 +341,7 @@ export default function ContactPage() {
                     </div>
                 </div>
             </section>
+
 
 
             <section id="faq" className="max-w-[1200px] mx-auto px-[10vw] lg:px-5 pb-10">
@@ -387,18 +390,7 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            <footer className="border-t border-gray-300 py-5">
-                <div className="max-w-[1200px] mx-auto px-5 text-gray-600">
-                    © {new Date().getFullYear()} Digibility Solutions Pvt. Ltd. ·{" "}
-                    <a href="#" className="text-blue-600">
-                        Privacy
-                    </a>{" "}
-                    ·{" "}
-                    <a href="#" className="text-blue-600">
-                        Terms
-                    </a>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

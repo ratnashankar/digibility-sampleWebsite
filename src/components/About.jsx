@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/digibility logo light background.png";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const AboutUs = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -12,65 +14,10 @@ const AboutUs = () => {
     };
 
     return (
-        <div className="mt-[8vh]" >
-            <header className="z-40 bg-white border-b border-gray-200 fixed top-0 w-full px-[5vw]">
-                <div className="mx-auto flex justify-between items-center py-3">
+        <div className="" >
+            <Header/>
 
-                    <div className="flex items-center">
-                        <img src={logo} alt="Digibility logo" className="h-11" />
-                    </div>
-
-                    <nav className="hidden md:flex space-x-6 text-gray-800 text-lg font-bold">
-                        <button onClick={() => handleScroll("story")}>Story</button>
-                        <button onClick={() => handleScroll("mission")}>Mission</button>
-                        <button onClick={() => handleScroll("principles")}>Principles</button>
-                        <button onClick={() => handleScroll("how")}>How it works</button>
-                        <button onClick={() => handleScroll("faq")}>FAQs</button>
-                    </nav>
-
-                    <button
-                        className="md:hidden p-2 rounded focus:outline-none"
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-7 w-7"
-                            fill="none"
-                            viewBox="0 0 20 20"
-                            stroke="currentColor"
-                        >
-                            {menuOpen ? (
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            ) : (
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                            )}
-                        </svg>
-                    </button>
-                </div>
-
-                {menuOpen && (
-                    <div className="md:hidden flex flex-col gap-4 bg-white px-5 py-4 text-lg font-bold border-t border-gray-200">
-                        <button onClick={() => handleScroll("story")}>Story</button>
-                        <button onClick={() => handleScroll("mission")}>Mission</button>
-                        <button onClick={() => handleScroll("principles")}>Principles</button>
-                        <button onClick={() => handleScroll("how")}>How it works</button>
-                        <button onClick={() => handleScroll("faq")}>FAQs</button>
-                    </div>
-                )}
-            </header>
-
-            <section className="bg-gradient-to-br from-[#007bff] to-[#6f42c1] text-white">
+            <section className="pt-[13vh] bg-gradient-to-br from-[#007bff] to-[#6f42c1] text-white">
                 <div className=" mx-auto flex flex-col md:flex-row items-center px-[11vw] py-16 gap-6">
                     <div className="flex-1">
                         <div className="tracking-wide font-semibold opacity-90 mb-2">
@@ -191,7 +138,7 @@ const AboutUs = () => {
                         { icon: "📉", title: "Unclear ROI", text: "Hard to know what worked, so every week starts from zero." },
                         { icon: "📅", title: "Inconsistency", text: "Without a system, posting regularly is a constant struggle." }
                     ].map((item, i) => (
-                        <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 flex-1 min-w-[240px]">
+                        <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 flex-1 min-w-[240px] transition-transform duration-300 hover:-translate-y-2">
                             <div className="text-2xl">{item.icon}</div>
                             <h4 className="text-xl font-bold mt-2">{item.title}</h4>
                             <p className="text-gray-600">{item.text}</p>
@@ -208,7 +155,7 @@ const AboutUs = () => {
                         { icon: "🌍", title: "Vision:", text: "A world where every good business can market itself without needing a big budget or a big team." },
                         { icon: "🤝", quote: "“Outcomes over outputs. Time back to you.”" }
                     ].map((item, i) => (
-                        <div key={i} className="flex gap-3 items-start bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px]">
+                        <div key={i} className="flex gap-3 items-start bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px] transition-transform duration-300 hover:-translate-y-2">
                             <div className="text-2xl">{item.icon}</div>
                             <div>
                                 {item.title && <b>{item.title}</b>}
@@ -241,7 +188,7 @@ const AboutUs = () => {
                         { icon: "⏱️", title: "Give Time Back", text: "Reduce planning, writing, and scheduling overhead." },
                         { icon: "🔎", title: "Radical Clarity", text: "Simple insights so you know what worked — and why." }
                     ].map((item, i) => (
-                        <div key={i} className="flex gap-3 items-start bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px] max-w-[10vw]">
+                        <div key={i} className="flex gap-3 items-start bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px] max-w-[10vw] transition-transform duration-300 hover:-translate-y-2">
                             <div className="text-2xl">{item.icon}</div>
                             <div>
                                 <b>{item.title}</b>
@@ -262,7 +209,7 @@ const AboutUs = () => {
                         { num: "2", title: "Plan & Create", text: "We assemble your calendar and draft posts tailored to your goals." },
                         { num: "3", title: "Schedule & Learn", text: "Approve with one click. We schedule, publish, and learn what works." }
                     ].map((step, i) => (
-                        <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 flex-1 min-w-[260px]">
+                        <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 flex-1 min-w-[260px] transition-transform duration-300 hover:-translate-y-2">
                             <div className="w-9 h-9 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold mb-2">
                                 {step.num}
                             </div>
@@ -284,7 +231,7 @@ const AboutUs = () => {
                         { title: "Compliance-Ready", text: "Designed with GDPR principles; no dark patterns." },
                         { title: "Control", text: "Clear settings for retention, deletion, and opt-out." }
                     ].map((item, i) => (
-                        <div key={i} className="bg-white border border-gray-300 rounded-2xl p-4 flex-1 min-w-[220px]">
+                        <div key={i} className="bg-white border border-gray-300 rounded-2xl p-4 flex-1 min-w-[220px] transition-transform duration-300 hover:-translate-y-2">
                             <b>{item.title}</b>
                             <p>{item.text}</p>
                         </div>
@@ -300,7 +247,7 @@ const AboutUs = () => {
                         { title: "Next", items: ["Brand voice onboarding & style guides", "Deeper platform integrations", "Smarter time-to-post recommendations"] },
                         { title: "Later", items: ["Collaboration & approvals", "Template marketplace", "Advanced insights & alerts"] }
                     ].map((col, i) => (
-                        <div key={i} className="bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px]">
+                        <div key={i} className="bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px] transition-transform duration-300 hover:-translate-y-2">
                             <h5 className="text-lg text-purple-600 font-bold mb-2">{col.title}</h5>
                             <ul className="list-disc list-inside text-gray-700">
                                 {col.items.map((item, idx) => (
@@ -386,11 +333,7 @@ const AboutUs = () => {
                     </details>
                 ))}
             </section>
-            <footer className=" container mx-auto px-[3vw] py-10  border-t border-gray-200 text-gray-600 text-[18px]">
-                © 2025 Digibility Solutions Pvt. Ltd. ·{" "}
-                <a href="#" className=" text-[#007bff]">Privacy</a> ·{" "}
-                <a href="#" className=" text-[#007bff]">Terms</a>
-            </footer>
+           <Footer/>
         </div>
     );
 };

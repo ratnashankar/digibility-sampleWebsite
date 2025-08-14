@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
-import Pricing from "./components/Pricing";
+import ImaginePart from "./components/ImaginePart";
 import Footer from "./components/Footer";
 import Working from "./components/Working";
 import BuiltFor from "./components/BuiltFor";
@@ -23,7 +23,7 @@ export default function App() {
               <Header />
                 <Hero />
                 <Features />
-                <Pricing />
+                <ImaginePart />
                 <Working />
                 <BuiltFor />
                 <Footer />

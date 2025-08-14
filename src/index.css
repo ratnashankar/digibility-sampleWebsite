@@ -3,3 +3,36 @@
 @tailwind utilities;
 
 body { @apply bg-white text-gray-800; }
+
+
+@keyframes slideDownCenterIn {
+    0% {
+        transform: translate(-50%, -20%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, 0%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDownCenterOut {
+    0% {
+        transform: translate(-50%, 0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -20%);
+        opacity: 0;
+    }
+}
+
+.animate-slideDownCenterIn {
+    animation: slideDownCenterIn 0.4s ease-out forwards;
+}
+
+.animate-slideDownCenterOut {
+    animation: slideDownCenterOut 0.4s ease-out forwards;
+}
+
+
