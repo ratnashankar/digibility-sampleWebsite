@@ -1,339 +1,352 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/digibility logo light background.png";
 import Header from "./Header";
 import Footer from "./Footer";
+import Aboutbg from "../assets/Digital-markting-video.MP4";
+import bgimg from "../assets/aboutbg.JPG";
 
 const AboutUs = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const handleScroll = (e) => {
-        const element = document.getElementById(e);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-        }
-    };
 
     return (
         <div className="" >
-            <Header/>
+            <Header />
 
-            <section className="pt-[13vh] bg-gradient-to-br from-[#007bff] to-[#6f42c1] text-white">
-                <div className=" mx-auto flex flex-col md:flex-row items-center px-[11vw] py-16 gap-6">
-                    <div className="flex-1">
-                        <div className="tracking-wide font-semibold opacity-90 mb-2">
-                            ABOUT DIGIBILITY
+            <section className="relative min-h-screen w-screen pt-[4vh]  text-white overflow-hidden flex justify-center items-center">
+                <video
+                    className="absolute inset-0 w-full h-full object-cover"
+                    src={Aboutbg}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
+
+                <div className="relative  flex flex-col md:flex-row items-center justify-between px-[7vw] lg:px-0 py-20 gap-12 max-w-7xl">
+                    <div className="flex-1 min-w-[40vw]">
+                        <div className="tracking-[0.15em] text-green-400 font-semibold mb-4 uppercase">
+                            About Digibility
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+                        <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight mb-6">
                             We’re building calm, consistent social media for small businesses.
                         </h1>
-                        <p className="text-lg text-gray-200 max-w-2xl mb-6">
+                        <p className="text-lg lg:text-xl text-gray-200 max-w-2xl mb-8 leading-relaxed">
                             Digibility exists because posting shouldn’t require six tools,
                             three freelancers, and your Sunday evening. We’re creating an
-                            AI-assisted system that plans, creates, schedules, and learns — so
-                            you get time back.
+                            AI-assisted system that plans, creates, schedules, and learns —
+                            so you get time back.
                         </p>
-                        <div className="flex flex-wrap gap-3">
-                            <button className="bg-green-400 hover:bg-green-500 text-white font-bold px-5 py-3 rounded-lg transition-colors duration-300 ease-in-out">
+                        <div className="flex flex-wrap gap-4">
+                            <button className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
                                 Request Private Invite
                             </button>
-                            <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold px-5 py-3 rounded-lg transition-colors duration-300 ease-in-out">
+                            <button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-6 py-3 rounded-xl transition-all duration-300">
                                 Our Product Principles
                             </button>
-
                         </div>
                     </div>
 
-                    <div className="flex-1 bg-white/10 border border-white/30 rounded-2xl p-5 w-full md:max-w-[33vw]">
-                        <p className="italic text-gray-100 mb-3">
+                    <div className="flex-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 shadow-lg w-full md:max-w-[35vw]">
+                        <p className="italic text-gray-100 mb-6 text-lg">
                             “Marketing isn’t failing you — the system is. Our job is to fix
                             the system so small teams can win.”
                         </p>
-                        <ul className="flex flex-wrap gap-3">
+                        <ul className="flex flex-wrap gap-y-4">
                             {[
                                 "Plan → Create → Schedule in one flow",
                                 "No complex dashboards — radical clarity",
                                 "Keep ownership of your content & data",
                                 "Built for individuals, SMBs, coaches & consultants",
                             ].map((item, i) => (
-                                <li
-                                    key={i}
-                                    className="flex gap-2 w-full sm:w-[48%]"
-                                >
-                                    <span className="w-2.5 h-2.5 rounded-full bg-green-400 mt-2"></span>
-                                    <span>{item}</span>
+                                <li key={i} className="flex gap-3 w-full sm:w-[48%] text-gray-200">
+                                    <span className="w-3 h-3 rounded-full bg-green-400 mt-2 flex-shrink-0"></span>
+                                    <span className="text-base">{item}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
-
                 </div>
             </section>
 
-            <section id="story" className="bg-gray-50 px-[11vw] ">
-                <div className=" mx-auto  py-16">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        The Digibility Story
-                    </h2>
-                    <p className="text-gray-600 max-w-3xl mb-7">
-                        Our founders spent years helping small brands publish content the
-                        hard way. The patterns were clear: too many tools, not enough
-                        clarity, and results that were hard to trust. Digibility is our
-                        answer to that pattern.
-                    </p>
-                    <div className="flex flex-col gap-6 border-l-2 border-blue-500 ">
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+                <img
+                    src={bgimg}
+                    alt="Background"
+                    className="absolute inset-0 w-full h-full object-cover"
+                />
+
+                <div className="relative z-10">
+
+                    <section id="story" className=" ">
+                        <div className=" mx-auto lg:w-[80vw] py-16 px-[10vw] lg:px-0">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                                The Digibility Story
+                            </h2>
+                            <p className="text-gray-600 max-w-3xl mb-7">
+                                Our founders spent years helping small brands publish content the
+                                hard way. The patterns were clear: too many tools, not enough
+                                clarity, and results that were hard to trust. Digibility is our
+                                answer to that pattern.
+                            </p>
+                            <div className="flex flex-col gap-6 border-l-2 border-blue-500 ">
+                                {[
+                                    {
+                                        year: "2015–2021",
+                                        title: "Pattern Spotting",
+                                        text: "Advising SMBs & creators showed the same problems again and again: tool sprawl, DIY burnout, and inconsistent posting.",
+                                    },
+                                    {
+                                        year: "2022–2024",
+                                        title: "Prototypes & Playbooks",
+                                        text: "We built internal playbooks and light prototypes to automate calendars and approvals. Results improved — effort dropped.",
+                                    },
+                                    {
+                                        year: "2025",
+                                        title: "Digibility Solutions Pvt. Ltd.",
+                                        text: "We formalized the vision and began building the MVP with a small group of early users to refine the flow end-to-end.",
+                                    },
+                                    {
+                                        year: "Now",
+                                        title: "Private Pilots",
+                                        text: "We’re inviting a handful of businesses to help shape the product. If you want calm, consistent social — join us.",
+                                    },
+                                ].map((step, i) => (
+                                    <div
+                                        key={i}
+                                        className="flex flex-col md:flex-row gap-4 relative  px-[3vw] pl-[1vw] items-start"
+                                    >
+                                        <div className="min-w-[160px] mt-5">
+                                            <span className="inline-block px-3 py-1 bg-white border border-gray-300 rounded-full font-semibold">
+                                                {step.year}
+                                            </span>
+                                        </div>
+                                        <div className="bg-white border border-gray-200 rounded-2xl p-4 flex-1">
+                                            <b>{step.title}</b>
+                                            <br />
+                                            {step.text}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="problem" className=" mx-auto px-[11vw] py-16">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                            The Problem We’re Fixing
+                        </h2>
+                        <p className="text-gray-600 max-w-3xl mb-7">
+                            When you try to build a social presence with limited time and budget,
+                            the system makes you wear every hat. We’re changing that.
+                        </p>
+                        <div className="flex flex-wrap gap-6">
+                            {[
+                                { icon: "🧩", title: "Tool Overload", text: "Six apps to make one post. Data scattered everywhere." },
+                                { icon: "⏳", title: "DIY Burnout", text: "Weekends lost to planning, writing, and designing." },
+                                { icon: "📉", title: "Unclear ROI", text: "Hard to know what worked, so every week starts from zero." },
+                                { icon: "📅", title: "Inconsistency", text: "Without a system, posting regularly is a constant struggle." }
+                            ].map((item, i) => (
+                                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 flex-1 min-w-[240px] transition-transform duration-300 hover:-translate-y-2">
+                                    <div className="text-2xl">{item.icon}</div>
+                                    <h4 className="text-xl font-bold mt-2">{item.title}</h4>
+                                    <p className="text-gray-600">{item.text}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section id="mission" className=" mx-auto px-[11vw] py-16">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Mission & Vision</h2>
+                        <div className="flex flex-wrap gap-6">
+                            {[
+                                { icon: "🎯", title: "Mission:", text: "Give small teams a calm, consistent way to do social media — with clarity and less effort." },
+                                { icon: "🌍", title: "Vision:", text: "A world where every good business can market itself without needing a big budget or a big team." },
+                                { icon: "🤝", quote: "“Outcomes over outputs. Time back to you.”" }
+                            ].map((item, i) => (
+                                <div key={i} className="flex gap-3 items-start bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px] transition-transform duration-300 hover:-translate-y-2">
+                                    <div className="text-2xl">{item.icon}</div>
+                                    <div>
+                                        {item.title && <b>{item.title}</b>}
+                                        {item.text && <p>{item.text}</p>}
+                                        {item.quote && <p className="italic text-gray-600">{item.quote}</p>}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section id="what" className=" px-[11vw]  py-16 w-[95vw] lg:max-w-[60vw]">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4 ">
+                            What Is Digibility? (Plain English)
+                        </h2>
+                        <p className="text-gray-600 max-w-3xl">
+                            It’s your social media co-pilot. You answer a few simple questions. It
+                            plans your calendar, drafts your posts, schedules them, and learns
+                            what works. You stay in control — we remove the chaos.
+                        </p>
+                    </section>
+
+                    <section id="principles" className=" mx-auto px-[11vw] py-16">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Product Principles</h2>
+                        <div className="flex flex-wrap gap-6 mx-auto">
+                            {[
+                                { icon: "✅", title: "Outcomes > Outputs", text: "We optimize for business results, not posting volume." },
+                                { icon: "🧠", title: "Human-first AI", text: "AI assists; you approve. Your voice stays yours." },
+                                { icon: "🔒", title: "Privacy by Design", text: "You own your content and data. Clear export and deletion." },
+                                { icon: "⏱️", title: "Give Time Back", text: "Reduce planning, writing, and scheduling overhead." },
+                                { icon: "🔎", title: "Radical Clarity", text: "Simple insights so you know what worked — and why." }
+                            ].map((item, i) => (
+                                <div key={i} className="flex gap-3 items-start bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[80vw] lg:min-w-[18vw] max-w-[10vw] transition-transform duration-300 hover:-translate-y-2">
+                                    <div className="text-2xl">{item.icon}</div>
+                                    <div>
+                                        <b>{item.title}</b>
+                                        <p>{item.text}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section id="how" className=" mx-auto px-[11vw] py-16">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                            How It Works (at a Glance)
+                        </h2>
+                        <div className="flex flex-wrap gap-6">
+                            {[
+                                { num: "1", title: "Answer", text: "Tell us who you are and what you sell in a short, friendly flow." },
+                                { num: "2", title: "Plan & Create", text: "We assemble your calendar and draft posts tailored to your goals." },
+                                { num: "3", title: "Schedule & Learn", text: "Approve with one click. We schedule, publish, and learn what works." }
+                            ].map((step, i) => (
+                                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 flex-1 min-w-[260px] transition-transform duration-300 hover:-translate-y-2">
+                                    <div className="w-9 h-9 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold mb-2">
+                                        {step.num}
+                                    </div>
+                                    <b>{step.title}</b>
+                                    <p>{step.text}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section id="trust" className=" mx-auto px-[11vw] py-16">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                            Responsible AI & Data Practices
+                        </h2>
+                        <div className="flex flex-wrap gap-6">
+                            {[
+                                { title: "Data Ownership", text: "Your content and exports are yours — always." },
+                                { title: "Security", text: "Encryption in transit & at rest; role-based access." },
+                                { title: "Compliance-Ready", text: "Designed with GDPR principles; no dark patterns." },
+                                { title: "Control", text: "Clear settings for retention, deletion, and opt-out." }
+                            ].map((item, i) => (
+                                <div key={i} className="bg-white border border-gray-300 rounded-2xl p-4 flex-1 min-w-[220px] transition-transform duration-300 hover:-translate-y-2">
+                                    <b>{item.title}</b>
+                                    <p>{item.text}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section id="roadmap" className=" mx-auto px-[11vw] py-16">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Roadmap Snapshot</h2>
+                        <div className="flex flex-wrap gap-6">
+                            {[
+                                { title: "Now", items: ["Private pilots with select businesses", "Calendar + drafting + scheduling core", "Early analytics: clarity over vanity"] },
+                                { title: "Next", items: ["Brand voice onboarding & style guides", "Deeper platform integrations", "Smarter time-to-post recommendations"] },
+                                { title: "Later", items: ["Collaboration & approvals", "Template marketplace", "Advanced insights & alerts"] }
+                            ].map((col, i) => (
+                                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px] transition-transform duration-300 hover:-translate-y-2">
+                                    <h5 className="text-lg text-purple-600 font-bold mb-2">{col.title}</h5>
+                                    <ul className="list-disc list-inside text-gray-700">
+                                        {col.items.map((item, idx) => (
+                                            <li key={idx}>{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section className=" mx-auto px-[11vw] py-16">
+                        <div className="bg-gradient-to-br from-purple-600 to-blue-500 text-white rounded-2xl p-7">
+                            <h2 className="text-3xl font-bold mb-2">
+                                Why we’re in stealth — and how to get in
+                            </h2>
+                            <p className="text-gray-200 max-w-3xl mb-5">
+                                We’re refining the experience with a small group first. That lets us
+                                build fast, listen closely, and keep promises. Want in?
+                            </p>
+                            <form className="flex flex-wrap gap-3">
+                                <input
+                                    type="text"
+                                    placeholder="Your name"
+                                    className="rounded-lg p-3 text-gray-800 flex-1 min-w-[200px]"
+                                    required
+                                />
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    className="rounded-lg p-3 text-gray-800 flex-1 min-w-[200px]"
+                                    required
+                                />
+                                <select className="rounded-lg p-3 text-gray-800 flex-1 min-w-[200px]">
+                                    <option value="">Business type</option>
+                                    <option>Solo / Creator</option>
+                                    <option>Coach / Consultant</option>
+                                    <option>SMB</option>
+                                    <option>Startup</option>
+                                </select>
+                                <button
+                                    type="button"
+                                    className="bg-green-400 hover:bg-green-500 px-5 py-3 rounded-lg font-bold transition-colors duration-300 ease-in-out"
+                                >
+                                    Request Invite
+                                </button>
+                            </form>
+                        </div>
+                    </section>
+
+                    <section id="faq" className=" mx-auto px-[11vw] py-16">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">FAQs</h2>
                         {[
                             {
-                                year: "2015–2021",
-                                title: "Pattern Spotting",
-                                text: "Advising SMBs & creators showed the same problems again and again: tool sprawl, DIY burnout, and inconsistent posting.",
+                                q: "Is Digibility a tool or an agency?",
+                                a: "It’s a software tool. We automate planning, creation, scheduling, and learning. You stay in control and approve what goes live."
                             },
                             {
-                                year: "2022–2024",
-                                title: "Prototypes & Playbooks",
-                                text: "We built internal playbooks and light prototypes to automate calendars and approvals. Results improved — effort dropped.",
+                                q: "Do I own my content?",
+                                a: "Yes. You own everything you write, design, and publish through Digibility. Export and deletion options are built-in."
                             },
                             {
-                                year: "2025",
-                                title: "Digibility Solutions Pvt. Ltd.",
-                                text: "We formalized the vision and began building the MVP with a small group of early users to refine the flow end-to-end.",
+                                q: "Will this replace my freelancer or team?",
+                                a: "It can reduce repetitive work and coordination. Many teams will use Digibility alongside a freelancer for creative polish."
                             },
                             {
-                                year: "Now",
-                                title: "Private Pilots",
-                                text: "We’re inviting a handful of businesses to help shape the product. If you want calm, consistent social — join us.",
+                                q: "What platforms will you support first?",
+                                a: "We’re prioritizing Instagram, Facebook, and LinkedIn to start, with more to follow as pilots mature."
                             },
-                        ].map((step, i) => (
-                            <div
+                            {
+                                q: "How do private pilots work?",
+                                a: "We onboard a limited group, set shared goals, and iterate weekly. If you’re a fit, request an invite above."
+                            }
+                        ].map((item, i) => (
+                            <details
                                 key={i}
-                                className="flex flex-col md:flex-row gap-4 relative  px-[3vw] pl-[1vw] items-start"
+                                className="bg-white border border-gray-200 rounded-lg p-4 mb-3"
                             >
-                                <div className="min-w-[160px] mt-5">
-                                    <span className="inline-block px-3 py-1 bg-white border border-gray-300 rounded-full font-semibold">
-                                        {step.year}
-                                    </span>
-                                </div>
-                                <div className="bg-white border border-gray-200 rounded-2xl p-4 flex-1">
-                                    <b>{step.title}</b>
-                                    <br />
-                                    {step.text}
-                                </div>
-                            </div>
+                                <summary className="font-semibold cursor-pointer">
+                                    {item.q}
+                                </summary>
+                                <p className="mt-2 text-gray-600">{item.a}</p>
+                            </details>
                         ))}
-                    </div>
+                    </section>
+
                 </div>
             </section>
 
-            <section id="problem" className=" mx-auto px-[11vw] py-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    The Problem We’re Fixing
-                </h2>
-                <p className="text-gray-600 max-w-3xl mb-7">
-                    When you try to build a social presence with limited time and budget,
-                    the system makes you wear every hat. We’re changing that.
-                </p>
-                <div className="flex flex-wrap gap-6">
-                    {[
-                        { icon: "🧩", title: "Tool Overload", text: "Six apps to make one post. Data scattered everywhere." },
-                        { icon: "⏳", title: "DIY Burnout", text: "Weekends lost to planning, writing, and designing." },
-                        { icon: "📉", title: "Unclear ROI", text: "Hard to know what worked, so every week starts from zero." },
-                        { icon: "📅", title: "Inconsistency", text: "Without a system, posting regularly is a constant struggle." }
-                    ].map((item, i) => (
-                        <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 flex-1 min-w-[240px] transition-transform duration-300 hover:-translate-y-2">
-                            <div className="text-2xl">{item.icon}</div>
-                            <h4 className="text-xl font-bold mt-2">{item.title}</h4>
-                            <p className="text-gray-600">{item.text}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <section id="mission" className=" mx-auto px-[11vw] py-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Mission & Vision</h2>
-                <div className="flex flex-wrap gap-6">
-                    {[
-                        { icon: "🎯", title: "Mission:", text: "Give small teams a calm, consistent way to do social media — with clarity and less effort." },
-                        { icon: "🌍", title: "Vision:", text: "A world where every good business can market itself without needing a big budget or a big team." },
-                        { icon: "🤝", quote: "“Outcomes over outputs. Time back to you.”" }
-                    ].map((item, i) => (
-                        <div key={i} className="flex gap-3 items-start bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px] transition-transform duration-300 hover:-translate-y-2">
-                            <div className="text-2xl">{item.icon}</div>
-                            <div>
-                                {item.title && <b>{item.title}</b>}
-                                {item.text && <p>{item.text}</p>}
-                                {item.quote && <p className="italic text-gray-600">{item.quote}</p>}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <section id="what" className=" px-[11vw]  py-16 max-w-[60vw]">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 ">
-                    What Is Digibility? (Plain English)
-                </h2>
-                <p className="text-gray-600 max-w-3xl">
-                    It’s your social media co-pilot. You answer a few simple questions. It
-                    plans your calendar, drafts your posts, schedules them, and learns
-                    what works. You stay in control — we remove the chaos.
-                </p>
-            </section>
-
-            <section id="principles" className=" mx-auto px-[11vw] py-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Product Principles</h2>
-                <div className="flex flex-wrap gap-6">
-                    {[
-                        { icon: "✅", title: "Outcomes > Outputs", text: "We optimize for business results, not posting volume." },
-                        { icon: "🧠", title: "Human-first AI", text: "AI assists; you approve. Your voice stays yours." },
-                        { icon: "🔒", title: "Privacy by Design", text: "You own your content and data. Clear export and deletion." },
-                        { icon: "⏱️", title: "Give Time Back", text: "Reduce planning, writing, and scheduling overhead." },
-                        { icon: "🔎", title: "Radical Clarity", text: "Simple insights so you know what worked — and why." }
-                    ].map((item, i) => (
-                        <div key={i} className="flex gap-3 items-start bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px] max-w-[10vw] transition-transform duration-300 hover:-translate-y-2">
-                            <div className="text-2xl">{item.icon}</div>
-                            <div>
-                                <b>{item.title}</b>
-                                <p>{item.text}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <section id="how" className=" mx-auto px-[11vw] py-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    How It Works (at a Glance)
-                </h2>
-                <div className="flex flex-wrap gap-6">
-                    {[
-                        { num: "1", title: "Answer", text: "Tell us who you are and what you sell in a short, friendly flow." },
-                        { num: "2", title: "Plan & Create", text: "We assemble your calendar and draft posts tailored to your goals." },
-                        { num: "3", title: "Schedule & Learn", text: "Approve with one click. We schedule, publish, and learn what works." }
-                    ].map((step, i) => (
-                        <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 flex-1 min-w-[260px] transition-transform duration-300 hover:-translate-y-2">
-                            <div className="w-9 h-9 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold mb-2">
-                                {step.num}
-                            </div>
-                            <b>{step.title}</b>
-                            <p>{step.text}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <section id="trust" className=" mx-auto px-[11vw] py-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    Responsible AI & Data Practices
-                </h2>
-                <div className="flex flex-wrap gap-6">
-                    {[
-                        { title: "Data Ownership", text: "Your content and exports are yours — always." },
-                        { title: "Security", text: "Encryption in transit & at rest; role-based access." },
-                        { title: "Compliance-Ready", text: "Designed with GDPR principles; no dark patterns." },
-                        { title: "Control", text: "Clear settings for retention, deletion, and opt-out." }
-                    ].map((item, i) => (
-                        <div key={i} className="bg-white border border-gray-300 rounded-2xl p-4 flex-1 min-w-[220px] transition-transform duration-300 hover:-translate-y-2">
-                            <b>{item.title}</b>
-                            <p>{item.text}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <section id="roadmap" className=" mx-auto px-[11vw] py-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Roadmap Snapshot</h2>
-                <div className="flex flex-wrap gap-6">
-                    {[
-                        { title: "Now", items: ["Private pilots with select businesses", "Calendar + drafting + scheduling core", "Early analytics: clarity over vanity"] },
-                        { title: "Next", items: ["Brand voice onboarding & style guides", "Deeper platform integrations", "Smarter time-to-post recommendations"] },
-                        { title: "Later", items: ["Collaboration & approvals", "Template marketplace", "Advanced insights & alerts"] }
-                    ].map((col, i) => (
-                        <div key={i} className="bg-white border border-gray-200 rounded-2xl p-4 flex-1 min-w-[260px] transition-transform duration-300 hover:-translate-y-2">
-                            <h5 className="text-lg text-purple-600 font-bold mb-2">{col.title}</h5>
-                            <ul className="list-disc list-inside text-gray-700">
-                                {col.items.map((item, idx) => (
-                                    <li key={idx}>{item}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <section className=" mx-auto px-[11vw] py-16">
-                <div className="bg-gradient-to-br from-purple-600 to-blue-500 text-white rounded-2xl p-7">
-                    <h2 className="text-3xl font-bold mb-2">
-                        Why we’re in stealth — and how to get in
-                    </h2>
-                    <p className="text-gray-200 max-w-3xl mb-5">
-                        We’re refining the experience with a small group first. That lets us
-                        build fast, listen closely, and keep promises. Want in?
-                    </p>
-                    <form className="flex flex-wrap gap-3">
-                        <input
-                            type="text"
-                            placeholder="Your name"
-                            className="rounded-lg p-3 text-gray-800 flex-1 min-w-[200px]"
-                            required
-                        />
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            className="rounded-lg p-3 text-gray-800 flex-1 min-w-[200px]"
-                            required
-                        />
-                        <select className="rounded-lg p-3 text-gray-800 flex-1 min-w-[200px]">
-                            <option value="">Business type</option>
-                            <option>Solo / Creator</option>
-                            <option>Coach / Consultant</option>
-                            <option>SMB</option>
-                            <option>Startup</option>
-                        </select>
-                        <button
-                            type="button"
-                            className="bg-green-400 hover:bg-green-500 px-5 py-3 rounded-lg font-bold transition-colors duration-300 ease-in-out"
-                        >
-                            Request Invite
-                        </button>
-                    </form>
-                </div>
-            </section>
-
-            <section id="faq" className=" mx-auto px-[11vw] py-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">FAQs</h2>
-                {[
-                    {
-                        q: "Is Digibility a tool or an agency?",
-                        a: "It’s a software tool. We automate planning, creation, scheduling, and learning. You stay in control and approve what goes live."
-                    },
-                    {
-                        q: "Do I own my content?",
-                        a: "Yes. You own everything you write, design, and publish through Digibility. Export and deletion options are built-in."
-                    },
-                    {
-                        q: "Will this replace my freelancer or team?",
-                        a: "It can reduce repetitive work and coordination. Many teams will use Digibility alongside a freelancer for creative polish."
-                    },
-                    {
-                        q: "What platforms will you support first?",
-                        a: "We’re prioritizing Instagram, Facebook, and LinkedIn to start, with more to follow as pilots mature."
-                    },
-                    {
-                        q: "How do private pilots work?",
-                        a: "We onboard a limited group, set shared goals, and iterate weekly. If you’re a fit, request an invite above."
-                    }
-                ].map((item, i) => (
-                    <details
-                        key={i}
-                        className="bg-white border border-gray-200 rounded-lg p-4 mb-3"
-                    >
-                        <summary className="font-semibold cursor-pointer">
-                            {item.q}
-                        </summary>
-                        <p className="mt-2 text-gray-600">{item.a}</p>
-                    </details>
-                ))}
-            </section>
-           <Footer/>
+            <Footer />
         </div>
     );
 };

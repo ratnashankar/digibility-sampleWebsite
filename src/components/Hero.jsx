@@ -1,45 +1,54 @@
-import React from 'react'
+import React from "react";
+import backgroundVideo from "../assets/backgroundvideo.mp4";
 
 export default function Hero() {
   return (
-    <section>
-      <div className="py-[8vh] pb-[10vh] text-white bg-gradient-to-br from-blue-500 to-purple-700 
-                      w-[100vw] h-auto md:w-[90vw] md:h-[80vh] lg:w-[80vw] lg:h-[70vh] mx-auto">
+    <section className="relative w-screen h-screen overflow-hidden flex items-center justify-center">
+      {/* Background video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src={backgroundVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
 
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-        <div className="heading flex text-[15vw] md:text-[6vw] lg:text-[3vw] ml-5 font-[700] 
-                        flex-col justify-items-start pl-[3vw] items-start pt-[10vh]">
-          <h1>Your Social Media, Fully Managed.</h1>
-          <h1>Without the Overwhelm.</h1>
-        </div>
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center text-center px-6 md:px-12">
+        <h1 className="text-[11vw] md:text-[7vw] lg:text-[5vw] font-extrabold leading-tight text-white drop-shadow-lg">
+          Your Social Media, <br />
+          <span className="text-[#00e676]">Fully Managed.</span>
+        </h1>
 
+        <p className="mt-6 text-[5vw] md:text-[2.5vw] lg:text-[1.6vw] font-medium max-w-3xl text-gray-100 drop-shadow-md">
+          Plan, create, schedule, and optimize — all without chasing freelancers
+          or managing a dozen tools. 🚀
+        </p>
 
-        <div className="subheading text-[6vw] md:text-[2.5vw] lg:text-[1.5vw] mx-5 font-[700] 
-                        flex flex-col justify-items-start pl-[3vw] items-start pt-[2vh] max-w-[90%]">
-          <p>
-            Plan, create, schedule, and optimize — all without chasing freelancers or managing a <br className="hidden md:block" /> dozen tools. 🚀
-          </p>
-        </div>
-
-        <div className="buttons flex gap-2 md:gap-4 lg:gap-5 ml-3 justify-start items-center 
-                        pt-[3vh] pl-[3vw] flex-wrap md:flex-nowrap">
+        <div className="mt-10 flex flex-wrap gap-5 justify-center">
           <a
             href="#"
-            className="bg-[#00e676] hover:bg-green-500 px-6 py-3 rounded-lg text-white font-bold 
-                       transition-colors duration-300 text-[4vw] md:text-[1.5vw] lg:text-[1vw]"
+            className="bg-[#00e676] hover:bg-[#00c853] px-8 py-4 rounded-xl text-white font-bold 
+                       transition-transform duration-300 text-[4vw] md:text-[1.8vw] lg:text-[1.2vw]
+                       shadow-lg hover:scale-105"
           >
-            Join Early Access
+            🚀 Join Early Access
           </a>
           <a
             href="#"
-            className="bg-transparent hover:bg-white border-2 hover:text-blue-700 px-3 pr-4 rounded-lg 
-                       text-white font-bold transition-colors duration-300 flex items-center gap-2 
-                       text-[4vw] md:text-[1.5vw] lg:text-[1vw]"
+            className="bg-transparent border-2 border-white hover:bg-white hover:text-blue-700 
+                       px-6 py-4 rounded-xl text-white font-bold transition-all duration-300 
+                       flex items-center gap-3 text-[4vw] md:text-[1.8vw] lg:text-[1.2vw]
+                       shadow-md hover:scale-105"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="36"
-              height="36"
+              width="28"
+              height="28"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -50,5 +59,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

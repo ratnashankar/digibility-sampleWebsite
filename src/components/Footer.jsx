@@ -1,9 +1,9 @@
 import React from "react";
 export default function Footer() {
   return (
-    <footer className="bg-[#2e2e2e] text-white py-6 px-[10vw]">
+    <footer className="bg-[#2e2e2e] text-white py-6 px-[5vw] lg:px-[10vw]">
       <div className=" mx-auto px-4 ">
-        <div className="flex flex-wrap justify-start gap-6 mb-4 text-[16px]">
+        <div className="flex flex-wrap justify-start gap-2 lg:gap-6 mb-4 text-[16px]">
           <a href="#">About</a>
           <a href="#">Pricing</a>
           <a href="#">Roadmap</a>

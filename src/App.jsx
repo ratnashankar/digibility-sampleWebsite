@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
@@ -10,6 +9,8 @@ import Working from "./components/Working";
 import BuiltFor from "./components/BuiltFor";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import pho5 from "../src/assets/storybg.JPG";
+
 
 export default function App() {
   return (
@@ -20,12 +21,17 @@ export default function App() {
             path="/"
             element={
               <>
-              <Header />
+                <Header />
                 <Hero />
-                <Features />
-                <ImaginePart />
-                <Working />
-                <BuiltFor />
+                <div
+                  className="h-fit bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${pho5})` }}
+                >
+                  <Features />
+                  <ImaginePart />
+                  <Working />
+                  <BuiltFor />
+                </div>
                 <Footer />
               </>
             }
