@@ -1,8 +1,8 @@
 import React from "react";
 
-import step1 from "../assets/step1.JPG";
-import step2 from "../assets/step2.JPG";
-import step3 from "../assets/step3.JPG";
+import step1 from "../assets/step1.jpg";
+import step2 from "../assets/step2.jpg";
+import step3 from "../assets/step3.jpg";
 
 export default function HowItWorks() {
   const steps = [
