@@ -1,8 +1,8 @@
 import React from "react";
-import img1 from "../assets/Vibrant.JPG";
-import img2 from "../assets/Illustration.JPG";
-import img3 from "../assets/High.JPG";
-import img4 from "../assets/Bright.JPG";
+import img1 from "../assets/Vibrant.jpg";
+import img2 from "../assets/Illustration.jpg";
+import img3 from "../assets/High.jpg";
+import img4 from "../assets/Bright.jpg";
 
 
 
