@@ -1,0 +1,71 @@
+name: Deploy to A2Hosting (FTP)
+
+on:
+  push:
+    branches: [ "main" ]
+
+concurrency:
+  group: deploy-a2hosting
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_VERSION: "20"        # LTS; adjust if your project needs a different version
+      OUTPUT_DIR: "dist"       # "build" for CRA / "dist" for Vite / ".next/out" if next export
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install deps (clean)
+        run: npm ci
+
+      # Optional tests – keep or remove as you wish
+      # - name: Run tests
+      #  run: |
+      #    if npm run | grep -q "^  test$"; then
+      #      npm test -- --watch=false
+      #    else
+      #      echo "No test script; skipping."
+      #    fi
+
+      - name: Build
+        run: |
+          if [ -f package.json ] && jq -re '.scripts.build' package.json >/dev/null 2>&1; then
+            npm run build
+          else
+            echo "No build script found in package.json" && exit 1
+          fi
+
+      - name: Verify build output exists
+        run: |
+          ls -la $OUTPUT_DIR || (echo "Output dir $OUTPUT_DIR not found" && exit 1)
+
+      - name: Deploy via FTP/FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.A2_FTP_SERVER }}
+          username: ${{ secrets.A2_FTP_USERNAME }}
+          password: ${{ secrets.A2_FTP_PASSWORD }}
+          port: ${{ secrets.A2_FTP_PORT || 21 }}
+          local-dir: ${{ env.OUTPUT_DIR }}/
+          server-dir: ${{ secrets.A2_SERVER_DIR }}
+          protocol: ftps
+          # If your host only supports plain FTP, set protocol: ftp (less secure).
+          # To force a clean upload each time (dangerous on wrong path), uncomment:
+          # dangerous-clean-slate: true
+
+      - name: Expose build as artefact (debug/rollback aid)
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: ${{ env.OUTPUT_DIR }}/
