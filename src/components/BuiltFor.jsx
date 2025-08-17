@@ -1,9 +1,9 @@
 import React from "react";
 
-import pho1 from "../assets/pho1.JPG";
-import pho2 from "../assets/pho2.JPG";
-import pho3 from "../assets/pho3.JPG";
-import pho4 from "../assets/pho4.JPG";
+import pho1 from "../assets/pho1.jpg";
+import pho2 from "../assets/pho2.jpg";
+import pho3 from "../assets/pho3.jpg";
+import pho4 from "../assets/pho4.jpg";
 
 export default function BusinessCards() {
   const cards = [

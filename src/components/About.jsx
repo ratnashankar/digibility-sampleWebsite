@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Aboutbg from "../assets/Digital-markting-video.MP4";
-import bgimg from "../assets/aboutbg.JPG";
+import bgimg from "../assets/aboutbg.jpg";
 
 const AboutUs = () => {
 

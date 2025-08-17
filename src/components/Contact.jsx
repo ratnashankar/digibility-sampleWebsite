@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import ErrorMsg from "./ErrorMsg";
 import SucessMsg from "./SucessMsg";
-import contactbg from "../assets/contactbg.JPG";
+import contactbg from "../assets/contactbg.jpg";
 import contactbgvideo from "../assets/contactbg.mp4";
 export default function ContactPage() {
     const [status, setStatus] = useState({ ok: "", err: "" })
