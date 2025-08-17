@@ -35,10 +35,8 @@ body { @apply bg-white text-gray-800; }
     animation: slideDownCenterOut 0.4s ease-out forwards;
 }
 
-.headerin{
-    z-index: 12;
-}
-
-.errormsg{
-    z-index: 20;
+@media print {
+  header {
+    display: none;
+  }
 }

@@ -9,7 +9,6 @@ const AboutUs = () => {
 
     return (
         <div className="" >
-            <Header />
 
             <section className="relative min-h-screen w-screen pt-[4vh]  text-white overflow-hidden flex justify-center items-center">
                 <video
@@ -346,7 +345,6 @@ const AboutUs = () => {
                 </div>
             </section>
 
-            <Footer />
         </div>
     );
 };

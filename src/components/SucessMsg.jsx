@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const ErrorAlert = ({ message, show }) => {
+const SuccessMsg = ({ message, show }) => {
     const [visible, setVisible] = useState(false);
     const [exiting, setExiting] = useState(false);
 
@@ -11,24 +11,29 @@ const ErrorAlert = ({ message, show }) => {
 
             const timer = setTimeout(() => {
                 setExiting(true);
-                setTimeout(() => {
-                    setVisible(false);
-                }, 400);
+                setTimeout(() => setVisible(false), 400);
             }, 3000);
 
             return () => clearTimeout(timer);
+        } else {
+            setVisible(false);
         }
-    }, [show]);
+    }, [show, message]);
 
     if (!visible) return null;
 
+    const styles = "bg-[#E6F4EA] text-[#1E4620] border-[#A3D9A5]";
+
     return (
         <div
-            className={`fixed w-[90vw] lg:w-fit mx-auto top-5 left-1/2 -translate-x-1/2 z-50 bg-[#E8F5E9] text-[#1B5E20] border border-[#B2DFDB] p-3 rounded-lg shadow-lg animate-slideDownCenter ${exiting ? "animate-slideDownCenterOut" : "animate-slideDownCenterIn"} `}
+            className={`fixed z-[9999] w-[90vw] lg:w-fit mx-auto 
+      top-[12vh] left-1/2 -translate-x-1/2 
+      border p-3 rounded-lg  
+      ${styles} ${exiting ? "animate-slideDownCenterOut" : "animate-slideDownCenterIn"}`}
         >
             {message}
         </div>
     );
 };
 
-export default ErrorAlert;
+export default SuccessMsg;

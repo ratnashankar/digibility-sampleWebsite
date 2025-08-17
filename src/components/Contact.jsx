@@ -1,6 +1,4 @@
 import React, { useState, useRef } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 import ErrorMsg from "./ErrorMsg";
 import SucessMsg from "./SucessMsg";
 import contactbg from "../assets/contactbg.JPG";
@@ -71,7 +69,7 @@ export default function ContactPage() {
 
     return (
         <div className="bg-white text-[#2E2E2E] flex flex-col min-h-screen ">
-            <Header />
+
              <section className="relative w-full min-h-screen flex items-center pt-[13vh] text-white overflow-hidden">
       <video
         className="absolute inset-0 w-full h-full object-cover"
@@ -428,7 +426,6 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            <Footer />
         </div>
     );
 }

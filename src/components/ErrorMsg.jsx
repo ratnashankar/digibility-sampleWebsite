@@ -6,7 +6,6 @@ const ErrorMsg = ({ message, show, type = "error" }) => {
 
   useEffect(() => {
     if (show) {
-      // Reset state so it can show again
       setVisible(true);
       setExiting(false);
 
@@ -19,7 +18,7 @@ const ErrorMsg = ({ message, show, type = "error" }) => {
     } else {
       setVisible(false);
     }
-  }, [show, message]); // 👈 depend on both show + message
+  }, [show, message]); 
 
   if (!visible) return null;
 
