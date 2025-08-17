@@ -21,6 +21,7 @@ const Terms = lazy(() => import("./components/Digibility_terms_react"));
 const Carrier = lazy(() => import("./components/Digibility_careers_react"));
 const Cookies = lazy(() => import("./components/Digibility_cookie_policy_react"));
 const Disclamer = lazy(() => import("./components/Digibility_disclaimer_react"));
+const Blog = lazy(() => import("./components/Digibility_blog_pages_react"));
 
 const routes = [
   { path: "/", element: (
@@ -49,6 +50,7 @@ const routes = [
   { path: "/careers", element: <Carrier /> },
   { path: "/cookie", element: <Cookies /> },
   { path: "/disclaimer", element: <Disclamer /> },
+  { path: "/blog", element: <Blog /> },
 ];
 
 export default function App() {
