@@ -1,4 +1,4 @@
-name: Deploy to A2Hosting (FTP)
+name: Deploy digibility website to A2Hosting (FTP)
 
 on:
   push:
