@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
-import pho5 from "../src/assets/storybg.JPG";
+import pho5 from "../src/assets/storybg.jpg";
 
 const Hero = lazy(() => import("./components/Hero"));
 const FeaturesOfHomePage = lazy(() => import("./components/Features"));
