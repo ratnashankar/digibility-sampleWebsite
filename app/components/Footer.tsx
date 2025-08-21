@@ -1,3 +1,4 @@
+import Link from "next/link";
 interface FooterLink {
   label: string;
   href: string;
@@ -15,15 +16,13 @@ const quickLinks: FooterLink[] = [
   { label: "Refund", href: "/legal/refund" },
   { label: "Disclaimer", href: "/legal/disclaimer" },
   { label: "Cookies", href: "/legal/cookies" },
-    { label: "Careers", href: "/legal/careers" },
+  { label: "Careers", href: "/legal/careers" },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 py-8">
-
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
-
         <div>
           <h4 className="text-lg font-bold mb-2 text-white">Digibility</h4>
           <p className="text-sm">
@@ -36,12 +35,23 @@ export default function Footer() {
           <ul className="grid grid-cols-2 gap-y-1">
             {quickLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
+                {link.href.startsWith("/") ? (
+                  <Link
+                    href={link.href}
+                    className="hover:text-white transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors duration-200"
+                  >
+                    {link.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
