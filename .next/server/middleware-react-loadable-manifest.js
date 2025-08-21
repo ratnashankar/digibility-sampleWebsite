@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app\\\\contact\\\\Contact.tsx -> ./ContactForm\":{\"id\":\"app\\\\contact\\\\Contact.tsx -> ./ContactForm\",\"files\":[\"static/chunks/_app-pages-browser_app_contact_ContactForm_tsx.js\"]}}"
