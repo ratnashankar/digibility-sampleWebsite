@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react"; 
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,6 +10,7 @@ export default function Header() {
     { label: "About", href: "/about" },
     { label: "Features", href: "/features" },
     { label: "Contact", href: "/contact" },
+    { label: "Login", href: "https://app.digibility.ai/login" },
     { label: "Pricing", href: "/pricing" },
     { label: "Blog", href: "/blog" },
     { label: "Roadmap", href: "/roadmap" },
@@ -24,29 +25,43 @@ export default function Header() {
   const visibleLinks = navLinks.slice(0, 4);
   const hiddenLinks = navLinks.slice(4);
 
+  const renderLink = (item: { label: string; href: string }) => {
+    const isLogin = item.label === "Login";
+    return (
+      <Link
+        key={item.href}
+        href={item.href}
+        onClick={() => setMenuOpen(false)}
+        className={
+          isLogin
+            ? "px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 shadow-md"
+            : "transition-colors duration-200 hover:text-blue-600"
+        }
+      >
+        {item.label}
+      </Link>
+    );
+  };
+
   return (
-    <header className="fixed lg:px-6 w-full h-[8vh] transition-colors duration-300 z-30 bg-white">
+    <header className="fixed lg:px-6 w-full h-[10vh] transition-colors duration-300 z-30 bg-white">
       <div className="px-10 py-4 flex items-center justify-between">
-        {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-bold text-blue-600"
+          className="text-2xl font-bold text-blue-600 flex items-center"
           aria-label="Digibility Home"
         >
-          Digibility
+          <img
+            src="/1757175021796-digibility.png"
+            alt="Digibility_Logo"
+            className="h-14 w-auto max-w-[160px] mt-[-10px] " 
+          />
         </Link>
+
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8 text-lg font-bold">
-          {visibleLinks.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="transition-colors duration-200 hover:text-blue-600"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {visibleLinks.map(renderLink)}
 
           <button
             aria-label="Toggle extra menu"
@@ -70,29 +85,11 @@ export default function Header() {
       {/* Dropdown Menu */}
       {menuOpen && (
         <div className="absolute top-[8vh] right-0 bg-white w-full lg:w-64 lg:right-10 shadow-lg border rounded p-6 flex flex-col gap-4 text-lg font-bold">
-          {hiddenLinks.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className="transition-colors duration-200 hover:text-blue-600"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {hiddenLinks.map(renderLink)}
 
           {/* Mobile also shows visible links */}
           <div className="lg:hidden flex flex-col gap-4">
-            {visibleLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                className="transition-colors duration-200 hover:text-blue-600"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {visibleLinks.map(renderLink)}
           </div>
         </div>
       )}
