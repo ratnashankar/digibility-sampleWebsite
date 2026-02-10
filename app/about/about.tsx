@@ -1,111 +1,293 @@
+"use client";
 
-export const metadata = {
-  title: "About Us | Digibility",
-  description:
-    "Learn about Digibility — our mission, journey, leadership team, and vision to redefine AI-powered social media automation globally.",
-  openGraph: {
-    title: "About Us | Digibility",
-    description:
-      "Learn about Digibility — our mission, journey, leadership team, and vision to redefine AI-powered social media automation globally.",
-    url: "https://digibility.ai/about",
-    siteName: "Digibility",
-    images: [{ url: "/og-about.png", width: 1200, height: 630, alt: "Digibility About Us" }],
-    locale: "en_IN",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Us | Digibility",
-    description:
-      "Digibility is an Indian startup with global ambitions, building AI-powered marketing automation.",
-    images: ["/og-about.png"],
-  },
-  alternates: { canonical: "https://digibility.ai/about" },
-};
+import { ArrowRight, Users, Target, Heart, Zap } from "lucide-react";
 
-export default function About() {
+export default function AboutPage() {
+  const whoWeServe = [
+    {
+      title: "Solo Founders",
+      description:
+        "Building a product while juggling marketing, ops, and everything else.",
+      icon: Users,
+    },
+    {
+      title: "Small Teams",
+      description:
+        "Lean teams focused on product-market fit, not managing agencies.",
+      icon: Target,
+    },
+    {
+      title: "Growing Startups",
+      description:
+        "Scaling fast but marketing budgets are tight and timelines are short.",
+      icon: Zap,
+    },
+    {
+      title: "Local Businesses",
+      description: "Running physical shops that need consistent online presence.",
+      icon: Heart,
+    },
+  ];
+
+  const team = [
+    { name: "Amit", title: "The Architect", role: "Co-founder & CEO" },
+    { name: "Ratna", title: "The Storyteller", role: "Head of Content" },
+    { name: "Pritha", title: "The Operator", role: "Product Lead" },
+    { name: "Sonia", title: "The Builder", role: "Engineering Lead" },
+    { name: "Rhea", title: "The Connector", role: "Customer Success" },
+  ];
+
+  const values = [
+    {
+      title: "Human-First AI",
+      description: "AI creates, humans approve. Always.",
+    },
+    {
+      title: "Radical Transparency",
+      description: "No hidden fees, no lock-in, no surprise costs.",
+    },
+    {
+      title: "Accessible by Design",
+      description:
+        "Enterprise features at startup prices. Marketing should not be expensive.",
+    },
+    {
+      title: "Long-Term Partners",
+      description: "We grow when you grow. Your success is our success.",
+    },
+  ];
+
   return (
-    <div className="bg-gray-50 pt-[8vh] text-gray-900">
-      {/* Hero */}
-      <section className="text-center px-1 py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <h1 className="text-5xl font-bold mb-4">About Digibility</h1>
-        <p className="text-lg max-w-3xl mx-auto">
-          An Indian startup with global ambitions — empowering businesses to scale their social media effortlessly with AI.
-        </p>
-      </section>
+    <div className="App animate-fade-in bg-gradient-to-b from-[#F8FAFF] to-white">
 
-      {/* Journey */}
-      <section className="max-w-7xl mx-auto py-16 px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Journey</h2>
-        <div className="space-y-8">
-          <div className="flex items-start space-x-4">
-            <span className="text-blue-600 text-2xl">🚀</span>
-            <p><strong>2024 – Ideation & Founding:</strong> The seed of Digibility is planted to simplify digital growth with AI-first automation.</p>
-          </div>
-          <div className="flex items-start space-x-4">
-            <span className="text-indigo-600 text-2xl">🤖</span>
-            <p><strong>2025 – MVP Release:</strong> First version launches with AI-driven analysis, content, and scheduling.</p>
-          </div>
-          <div className="flex items-start space-x-4">
-            <span className="text-purple-600 text-2xl">📱</span>
-            <p><strong>2025 – Social-first Launch:</strong> Automation for Facebook, Instagram, LinkedIn, and more — built for SMBs and creators.</p>
-          </div>
-          <div className="flex items-start space-x-4">
-            <span className="text-cyan-600 text-2xl">🌍</span>
-            <p><strong>2026 – Scaling Globally:</strong> Expanding features into SEO, PPC, CRO and beyond with advanced marketing intelligence.</p>
-          </div>
-        </div>
-      </section>
+      <main className="min-h-screen">
 
-      {/* Mission & Vision */}
-      <section className="bg-gray-100 py-16 px-6 text-center">
-        <h2 className="text-3xl font-bold">Mission & Vision</h2>
-        <p className="mt-4 max-w-2xl mx-auto text-lg">
-          <strong>Mission:</strong> Democratize digital marketing with AI, enabling businesses of all sizes to grow online effortlessly.
-          <br />
-          <strong>Vision:</strong> Become the world’s most trusted AI-powered growth partner.
-        </p>
-      </section>
+        {/* ============================
+            HERO SECTION
+        ============================ */}
+        <section
+          className="py-20 md:py-28 bg-white relative overflow-hidden"
+          data-testid="about-hero"
+        >
+          <div className="absolute -top-28 right-0 w-96 h-96 bg-[#6D5CEB]/20 blur-3xl rounded-full"></div>
 
-      {/* Leadership */}
-      <section className="max-w-7xl mx-auto py-16 px-6" aria-labelledby="leadership-heading">
-        <h2 id="leadership-heading" className="text-3xl font-bold text-center">Leadership Team</h2>
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-          {[
-            { name: "Amit Gupta", role: "Founder & CEO", magic: "Driving global vision, strategy & execution." },
-            { name: "Swapnil Vothkar", role: "Tech Advisor", magic: "Architecting robust backend systems." },
-            { name: "Ratna Shankar Tripathi", role: "AI Architect", magic: "Infusing AI intelligence & automation into the core platform." },
-            { name: "Sonia Gupta", role: "Community Head", magic: "Building strong user connections and brand trust." },
-            { name: "Garv Gupta", role: "Strategy & Partnerships", magic: "Forging growth channels and collaborations." },
-            { name: "Pritha Sengupta", role: "Creative Strategy Lead", magic: "Design & storytelling excellence across touchpoints." },
-            { name: "Rhea Bhatia", role: "Customer Success Lead", magic: "Ensuring delightful client experiences and outcomes." },
-          ].map((m) => (
-            <div key={m.name} className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-200 to-indigo-200 mx-auto" />
-              <h3 className="text-xl font-semibold mt-4">{m.name}</h3>
-              <p className="text-blue-600 font-medium">{m.role}</p>
-              <p className="mt-2 text-sm text-gray-600">{m.magic}</p>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center relative z-10">
+              <h1
+                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 text-[#4E5674] animate-fade-up"
+                data-testid="about-heading"
+              >
+                Built to power{" "}
+                <span className="bg-gradient-to-r from-[#6D5CEB] to-[#2DA4EF] text-transparent bg-clip-text">
+                  solopreneurs, startups, and SMBs
+                </span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-[#64748b] max-w-2xl mx-auto animate-fade-up delay-150">
+                Agency-level marketing without the agency.
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* Global Vision */}
-      <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-1  py-16 text-center">
-        <h2 className="text-3xl font-bold">Global Vision</h2>
-        <p className="mt-4 max-w-2xl mx-auto">
-          Born in India, building for the world — AI-powered growth for every business.
-        </p>
-      </section>
+        {/* ============================
+            OUR STORY
+        ============================ */}
+        <section
+          className="py-20 bg-[#F8FAFF]"
+          data-testid="our-story"
+        >
+          <div className="max-w-4xl mx-auto px-6">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-[#4E5674] animate-fade-up">
+              Our Story
+            </h2>
 
-      {/* Careers CTA */}
-      <section className="max-w-7xl mx-auto py-20 px-6 text-center">
-        <h2 className="text-3xl font-bold">Join Our Journey</h2>
-        <p className="mt-4 text-lg">We welcome interns and full-time talent. Help us shape the future of marketing.</p>
-        <a href="/careers" className="mt-6 inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700">
-          Explore Careers
-        </a>
-      </section>
+            <div className="space-y-6 text-base sm:text-lg text-[#64748b] leading-relaxed animate-fade-up delay-150">
+              <p>
+                <strong className="text-[#4E5674]">The Problem:</strong> We watched founders pour
+                their energy into brilliant products, only to watch them fail because no one knew
+                they existed. Marketing was either too expensive (agencies charging $10K/month) or
+                too time-consuming (DIY tools that required full-time attention).
+              </p>
+
+              <p>
+                <strong className="text-[#4E5674]">The Frustration:</strong> Every startup we spoke
+                to had the same story—"We know we need to post consistently. We know social media
+                drives growth. But we cannot afford an agency, and we do not have time to do it
+                ourselves."
+              </p>
+
+              <p>
+                <strong className="text-[#4E5674]">The Solution:</strong> We built Digibility.
+                AI that plans your content, writes on-brand posts, and schedules everything—
+                while you stay in control.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================
+            WHO WE SERVE
+        ============================ */}
+        <section className="py-20 bg-white" data-testid="who-we-serve">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center text-[#4E5674] animate-fade-up">
+              Who We Serve
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {whoWeServe.map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={index}
+                    className="text-center rounded-xl p-8 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all animate-stagger"
+                    style={{ animationDelay: `${index * 0.15}s` }}
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#6D5CEB] to-[#2DA4EF] flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <IconComponent className="w-8 h-8 text-white" aria-hidden="true" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-3 text-[#4E5674]">{item.title}</h3>
+                    <p className="text-sm text-[#64748b]">{item.description}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================
+            WHY WE BUILT DIGIBILITY
+        ============================ */}
+        <section className="py-20 bg-[#F8FAFF]" data-testid="why-we-built">
+          <div className="max-w-4xl mx-auto px-6">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center text-[#4E5674] animate-fade-up">
+              Why We Built Digibility
+            </h2>
+
+            <div className="space-y-8">
+              {[ 
+                { title: "The Problem", desc: "..." },
+                { title: "Our Mission", desc: "..." },
+                { title: "What Drives Us", desc: "..." },
+              ].map((card, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition animate-stagger"
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <h3 className="text-2xl font-bold mb-4 text-[#4E5674]">{card.title}</h3>
+                  <p className="text-base text-[#64748b] leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================
+            TEAM
+        ============================ */}
+        <section className="py-20 bg-white" data-testid="team-section">
+          <div className="max-w-5xl mx-auto px-6">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center text-[#4E5674] animate-fade-up">
+              Meet the Team
+            </h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+              {team.map((member, index) => (
+                <div
+                  key={index}
+                  className="text-center animate-stagger"
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#6D5CEB] to-[#2DA4EF] flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-lg">
+                    {member.name.charAt(0)}
+                  </div>
+                  <h3 className="text-lg font-bold mb-1 text-[#4E5674]">{member.name}</h3>
+                  <p className="text-sm font-semibold text-[#6D5CEB]">{member.title}</p>
+                  <p className="text-xs text-[#64748b]">{member.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================
+            VALUES
+        ============================ */}
+        <section className="py-20 bg-[#F8FAFF]" data-testid="values-section">
+          <div className="max-w-4xl mx-auto px-6">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center text-[#4E5674] animate-fade-up">
+              What We Stand For
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {values.map((value, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition animate-stagger"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <h3 className="text-lg font-bold mb-2 text-[#4E5674]">{value.title}</h3>
+                  <p className="text-sm text-[#64748b]">{value.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================
+            CTA
+        ============================ */}
+        <section
+          className="py-20 bg-gradient-to-br from-[#6D5CEB] to-[#2DA4EF] text-white"
+          data-testid="about-cta"
+        >
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h3 className="text-3xl sm:text-4xl font-bold mb-6 animate-fade-up">
+              Join Thousands of Teams Growing with Digibility
+            </h3>
+
+            <p className="text-base sm:text-lg mb-10 opacity-95 max-w-2xl mx-auto animate-fade-up delay-150">
+              Start your free 14-day trial. No credit card required.
+            </p>
+
+            <button
+              className="bg-white text-[#6D5CEB] px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all inline-flex items-center gap-2 animate-fade-up"
+              data-testid="about-cta-button"
+            >
+              Start 14-Day Trial
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
+        </section>
+      </main>
+
+      {/* ============================
+          Animations
+      ============================ */}
+      <style>{`
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease-out forwards;
+        }
+        .animate-fade-up {
+          animation: fadeUp 0.8s ease-out forwards;
+        }
+        .animate-stagger {
+          opacity: 0;
+          animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+          0% { opacity: 0; transform: translateY(15px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
 
     </div>
   );

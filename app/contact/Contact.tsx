@@ -1,8 +1,14 @@
+"use client";
+
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import type { Metadata } from "next";
+import React from "react";
 
-const ContactForm = dynamic(() => import("./ContactForm"), { ssr: false }); // client-only interactivity
+// Dynamic import with TypeScript
+const ContactForm = dynamic(() => import("./ContactForm"), {
+  ssr: false,
+}) as React.ComponentType;
 
 export const metadata: Metadata = {
   title: "Contact Us | Digibility",
@@ -15,7 +21,14 @@ export const metadata: Metadata = {
       "Talk to Digibility — AI-powered social media automation from India to the world.",
     url: "https://digibility.ai/contact",
     siteName: "Digibility",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Digibility Contact" }],
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Digibility Contact",
+      },
+    ],
     locale: "en_IN",
     type: "website",
   },
@@ -29,7 +42,8 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  // JSON-LD: ContactPage + LocalBusiness for Local SEO (Pune)
+
+  // JSON-LD Schema
   const schema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
@@ -54,29 +68,35 @@ export default function ContactPage() {
   };
 
   return (
-      <main className="bg-gray-50 text-gray-900 ">
-
-
+    <main className="bg-gray-50 text-gray-900">
+      {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      {/* HERO */}
-      <section className="pt-[8vh] bg-gradient-to-r from-blue-600 to-indigo-700  text-white">
+
+      {/* HERO SECTION */}
+      <section className="pt-[8vh] bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
         <div className="max-w-7xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold">Talk to Digibility</h1>
             <p className="mt-4 text-lg opacity-90">
-              We’re here to help — whether you’re exploring the platform or need support.
+              We’re here to help — whether you’re exploring the platform or need
+              support.
             </p>
+
             <ul className="mt-6 space-y-2 text-sm opacity-90">
               <li>• Response within <strong>48 business hours</strong></li>
-              <li>• Email-first support for Starters, Chat + Email for Growth, AM for Scale</li>
+              <li>
+                • Email-first support for Starters, Chat + Email for Growth, AM
+                for Scale
+              </li>
             </ul>
           </div>
+
           <div className="relative">
             <Image
-              src=""
+              src="/images/contact-banner.png" // replace with your image
               alt="Contact Digibility"
               width={1200}
               height={800}
@@ -87,15 +107,16 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* TIERED CONTACT OPTIONS */}
+      {/* BODY SECTION */}
       <section className="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-8">
-        {/* Column 1: Form (primary) */}
+        {/* FORM COLUMN */}
         <div className="lg:col-span-2">
           <ContactForm />
         </div>
 
-        {/* Column 2: Direct details (secondary) */}
+        {/* INFO COLUMN */}
         <aside className="space-y-6">
+          {/* EMAIL */}
           <div className="p-6 rounded-2xl bg-white shadow border">
             <h2 className="text-xl font-semibold">Email</h2>
             <a
@@ -106,12 +127,14 @@ export default function ContactPage() {
             </a>
           </div>
 
-          {/* Address + Map */}
+          {/* OFFICE ADDRESS */}
           <div className="p-6 rounded-2xl bg-white shadow border">
             <h2 className="text-xl font-semibold">Office</h2>
-            <p className="mt-2 text-sm text-gray-600">Pune, Maharashtra, India</p>
+            <p className="mt-2 text-sm text-gray-600">
+              Pune, Maharashtra, India
+            </p>
+
             <div className="mt-4 overflow-hidden rounded-xl border">
-              {/* Google Maps Embed (no API key required basic iframe) */}
               <iframe
                 title="Digibility Office - Pune"
                 aria-label="Map showing Digibility in Pune, India"
@@ -124,21 +147,45 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Social Links */}
+          {/* SOCIAL LINKS */}
           <div className="p-6 rounded-2xl bg-white shadow border">
             <h2 className="text-xl font-semibold">Connect</h2>
             <ul className="mt-3 space-y-2">
               <li>
-                <a className="text-blue-600 hover:underline" href="https://www.linkedin.com/company/digibility-ai" target="_blank">LinkedIn</a>
+                <a
+                  className="text-blue-600 hover:underline"
+                  href="https://www.linkedin.com/company/digibility-ai"
+                  target="_blank"
+                >
+                  LinkedIn
+                </a>
               </li>
               <li>
-                <a className="text-blue-600 hover:underline" href="https://x.com/digibility" target="_blank">X (Twitter)</a>
+                <a
+                  className="text-blue-600 hover:underline"
+                  href="https://x.com/digibility"
+                  target="_blank"
+                >
+                  X (Twitter)
+                </a>
               </li>
               <li>
-                <a className="text-blue-600 hover:underline" href="https://www.facebook.com/digibilityai/" target="_blank">Facebook</a>
+                <a
+                  className="text-blue-600 hover:underline"
+                  href="https://www.facebook.com/digibilityai/"
+                  target="_blank"
+                >
+                  Facebook
+                </a>
               </li>
               <li>
-                <a className="text-blue-600 hover:underline" href="https://www.instagram.com/digibility.ai/" target="_blank">Instagram</a>
+                <a
+                  className="text-blue-600 hover:underline"
+                  href="https://www.instagram.com/digibility.ai/"
+                  target="_blank"
+                >
+                  Instagram
+                </a>
               </li>
             </ul>
           </div>

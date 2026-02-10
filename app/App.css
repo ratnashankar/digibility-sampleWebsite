@@ -1,0 +1,319 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --digi-primary: #4E5674;
+  --digi-gradient-start: #6D5CEB;
+  --digi-gradient-end: #2DA4EF;
+  --digi-bg: #F8FAFF;
+  --digi-text: #1a1a1a;
+  --digi-text-muted: #64748b;
+}
+
+.App {
+  min-height: 100vh;
+  background-color: var(--digi-bg);
+  color: var(--digi-text);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--digi-gradient-start), var(--digi-gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--digi-gradient-start), var(--digi-gradient-end));
+  color: white;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(109, 92, 235, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--digi-primary);
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  border: 2px solid var(--digi-primary);
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--digi-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: background-color 0.3s, backdrop-filter 0.3s;
+}
+
+.header-transparent {
+  background-color: transparent;
+}
+
+.header-solid {
+  background-color: rgba(248, 250, 255, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.hero-parallax {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  background: linear-gradient(135deg, rgba(109, 92, 235, 0.05), rgba(45, 164, 239, 0.05));
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .parallax-bg {
+    animation: parallaxMove 20s ease-in-out infinite;
+  }
+}
+
+@keyframes parallaxMove {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-20px, -20px);
+  }
+}
+
+.card-stagger {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.card-stagger:nth-child(1) { animation-delay: 0.1s; }
+.card-stagger:nth-child(2) { animation-delay: 0.2s; }
+.card-stagger:nth-child(3) { animation-delay: 0.3s; }
+.card-stagger:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-stagger {
+    opacity: 1;
+    animation: none;
+  }
+  
+  .parallax-bg {
+    animation: none;
+  }
+  
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none;
+  }
+}
+
+.trust-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background-color: white;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--digi-text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.module-tile {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.module-tile:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.module-tile.live::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--digi-gradient-start), var(--digi-gradient-end));
+}
+
+.module-tile.next {
+  opacity: 0.7;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.comparison-table th {
+  background-color: var(--digi-primary);
+  color: white;
+  padding: 20px 16px;
+  font-weight: 600;
+  text-align: left;
+  font-size: 14px;
+}
+
+.comparison-table th.highlight {
+  background: linear-gradient(135deg, var(--digi-gradient-start), var(--digi-gradient-end));
+  font-size: 16px;
+}
+
+.comparison-table td {
+  padding: 20px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table .category-name {
+  font-weight: 600;
+  color: var(--digi-primary);
+}
+
+.footer {
+  background-color: var(--digi-primary);
+  color: white;
+  padding: 48px 0 24px;
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: white;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+  background: white;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--digi-gradient-start);
+  box-shadow: 0 0 0 3px rgba(109, 92, 235, 0.1);
+}
+
+.form-input.error {
+  border-color: #ef4444;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--digi-text-muted);
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--digi-gradient-start);
+}
+
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  
+  .module-tile {
+    padding: 24px;
+  }
+  
+  .comparison-table {
+    font-size: 12px;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 12px 8px;
+  }
+}
