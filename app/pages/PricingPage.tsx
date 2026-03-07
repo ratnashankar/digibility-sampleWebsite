@@ -121,7 +121,7 @@ export const PricingPage = () => {
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-[#4E5674]"
                 data-testid="pricing-heading"
               >
-                Plans that scale with{' '}
+                Plans that scale with dasdf{' '}
                 <span className="gradient-text">your goals</span>
               </h1>
               <p className="text-base sm:text-lg text-[#64748b] max-w-2xl mx-auto">

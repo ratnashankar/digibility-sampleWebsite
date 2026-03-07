@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const BlogClient = dynamic(() => import("./BlogClient"), { ssr: false });
 
 export const metadata: Metadata = {
     title: "Blog | Digibility",
@@ -102,7 +101,6 @@ export default function BlogArchivePage() {
                     hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)]
                     "
                 >
-                    <BlogClient />
                 </div>
             </div>
         </main>

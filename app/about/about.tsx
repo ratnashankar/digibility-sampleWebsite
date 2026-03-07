@@ -62,33 +62,41 @@ export default function AboutPage() {
 
       <main className="min-h-screen">
 
-        {/* ============================
-            HERO SECTION
-        ============================ */}
-        <section
-          className="py-20 md:py-28 bg-white relative overflow-hidden"
-          data-testid="about-hero"
-        >
-          <div className="absolute -top-28 right-0 w-96 h-96 bg-[#6D5CEB]/20 blur-3xl rounded-full"></div>
+{/* ============================
+    HERO SECTION
+============================ */}
+<section
+  className="py-20 md:py-32 bg-white relative overflow-hidden"
+  data-testid="about-hero"
+>
+  {/* Subtle background gradient accent */}
+  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+    <div className="absolute -top-20 right-20 w-96 h-96 bg-[#6D5CEB]/10 blur-3xl rounded-full"></div>
+  </div>
 
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center relative z-10">
-              <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 text-[#4E5674] animate-fade-up"
-                data-testid="about-heading"
-              >
-                Built to power{" "}
-                <span className="bg-gradient-to-r from-[#6D5CEB] to-[#2DA4EF] text-transparent bg-clip-text">
-                  solopreneurs, startups, and SMBs
-                </span>
-              </h1>
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="max-w-4xl mx-auto text-center relative z-10">
+      <h1
+        className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-[#4E5674] animate-fade-up leading-tight"
+        data-testid="about-heading"
+      >
+        Built to power{" "}
+        <span className="text-[#6D5CEB]">
+          solopreneurs,
+        </span>
+        <br />
+        <span className="bg-gradient-to-r from-[#6D5CEB] to-[#2DA4EF] text-transparent bg-clip-text">
+          startups, and SMBs
+        </span>
+      </h1>
 
-              <p className="text-base sm:text-lg text-[#64748b] max-w-2xl mx-auto animate-fade-up delay-150">
-                Agency-level marketing without the agency.
-              </p>
-            </div>
-          </div>
-        </section>
+      <p className="text-base sm:text-lg text-[#64748b] max-w-2xl mx-auto animate-fade-up delay-150">
+        Agency-level marketing without the agency.
+      </p>
+    </div>
+  </div>
+</section>
+
 
         {/* ============================
             OUR STORY
@@ -159,31 +167,43 @@ export default function AboutPage() {
         {/* ============================
             WHY WE BUILT DIGIBILITY
         ============================ */}
-        <section className="py-20 bg-[#F8FAFF]" data-testid="why-we-built">
-          <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center text-[#4E5674] animate-fade-up">
-              Why We Built Digibility
-            </h2>
+<section className="py-20 bg-[#F8FAFF]" data-testid="why-we-built">
+  <div className="max-w-4xl mx-auto px-6">
+    <h2 className="text-3xl sm:text-4xl font-bold mb-16 text-center text-[#4E5674] animate-fade-up">
+      Why We Built Digibility
+    </h2>
 
-            <div className="space-y-8">
-              {[ 
-                { title: "The Problem", desc: "..." },
-                { title: "Our Mission", desc: "..." },
-                { title: "What Drives Us", desc: "..." },
-              ].map((card, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition animate-stagger"
-                  style={{ animationDelay: `${index * 0.15}s` }}
-                >
-                  <h3 className="text-2xl font-bold mb-4 text-[#4E5674]">{card.title}</h3>
-                  <p className="text-base text-[#64748b] leading-relaxed">{card.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+    <div className="space-y-12">
+      {[
+        {
+          title: "The Problem",
+          desc: "Great products fail because founders cannot afford consistent marketing. Agencies are expensive. Freelancers are inconsistent. DIY is exhausting.",
+        },
+        {
+          title: "Our Mission",
+          desc: "Make world-class marketing accessible to every business, regardless of budget or team size. Automate the grind. Preserve the control.",
+        },
+        {
+          title: "What Drives Us",
+          desc: "Every founder who closes a deal because someone saw their post. Every local shop that fills their tables because of consistent social presence. Every team that hits their growth targets without burning out. That is why we build.",
+        },
+      ].map((card, index) => (
+        <div
+          key={index}
+          className="bg-white rounded-xl p-8 sm:p-10 animate-stagger"
+          style={{ animationDelay: `${index * 0.15}s` }}
+        >
+          <h3 className="text-xl sm:text-2xl font-bold mb-4 text-[#4E5674]">
+            {card.title}
+          </h3>
+          <p className="text-base sm:text-lg text-[#64748b] leading-relaxed">
+            {card.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
         {/* ============================
             TEAM
         ============================ */}

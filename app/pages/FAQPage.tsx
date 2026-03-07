@@ -131,16 +131,19 @@ export default function FAQPage() {
       <main className="min-h-screen bg-[#F8FAFF]">
 
         {/* HERO SECTION */}
-        <section className="py-24 bg-gradient-to-br from-[#6D5CEB] via-[#5E6AED] to-[#2DA4EF] text-white rounded-b-3xl shadow-xl">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold drop-shadow-lg">
-              Clear answers for busy teams
-            </h1>
-            <p className="mt-5 text-lg opacity-95 max-w-2xl mx-auto">
-              Setup, trial, pricing, features & security — explained clearly.
-            </p>
-          </div>
-        </section>
+        <section className="py-20 md:py-28 bg-white">
+  <div className="max-w-7xl mx-auto px-6 text-center">
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#4E5674] leading-tight">
+      Clear answers for{" "}
+      <span className="bg-gradient-to-r from-[#6D5CEB] to-[#2DA4EF] text-transparent bg-clip-text">
+        busy teams
+      </span>
+    </h1>
+    <p className="mt-6 text-base sm:text-lg text-[#64748b] max-w-2xl mx-auto">
+      Setup, trial, pricing, features, and security in minutes.
+    </p>
+  </div>
+</section>
 
         {/* FAQ CATEGORIES */}
         <section className="py-24">

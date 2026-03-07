@@ -2,13 +2,14 @@
 "use client";
 
 import React, { useState } from 'react';
-import { 
+import {
   Check, Sparkles, Zap, TrendingUp, Users, Calendar, Clock, ShieldCheck,
   Layout, MessageSquare, BarChart3, Search, CheckCircle2, Globe, Award,
   ChevronRight, MousePointer2, Stars, Key, Lock, Database, X, ArrowRight,
   ChevronDown, MoveRight, Mail, Target, DollarSign
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
 
 /**
  * MASTER STYLE SYSTEM:
@@ -21,28 +22,42 @@ import { motion, AnimatePresence } from 'framer-motion';
  */
 
 // Fix for key prop error: Moving FAQItem above LandingPage and adding explicit typing.
-const FAQItem: React.FC<{ question: string, answer: string }> = ({ question, answer }) => {
+const FAQItem: React.FC<{ question: string; answer: string }> = ({
+  question,
+  answer,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className={`bg-white rounded-[2rem] border transition-all duration-500 ${isOpen ? 'border-[#6D5CEB]/30 ring-4 ring-[#6D5CEB]/5 shadow-xl' : 'border-[#E3E8FF] shadow-sm'}`}>
-      <button 
+    <div className="rounded-2xl border border-[#D6DEFF] bg-white overflow-hidden">
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-10 py-8 flex items-center justify-between text-left hover:bg-gray-50/50 transition-colors"
+        className="w-full flex items-center justify-between px-8 py-7 text-left"
       >
-        <span className="text-xl font-black text-[#1F2E66] leading-snug pr-8">{question}</span>
-        <motion.div animate={{ rotate: isOpen ? 180 : 0 }} className="flex-shrink-0">
-            <ChevronDown className={`w-6 h-6 ${isOpen ? 'text-[#6D5CEB]' : 'text-gray-300'}`} />
-        </motion.div>
+        <span className="text-base font-semibold text-[#1F2E66]">
+          {question}
+        </span>
+
+        <motion.span
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.25, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-5 h-5 text-[#98A2B3]" />
+        </motion.span>
       </button>
-      <AnimatePresence>
+
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+            transition={{
+              duration: 0.35,
+              ease: [0.4, 0, 0.2, 1], // smooth material-like easing
+            }}
           >
-            <div className="px-10 pb-10 text-[#6B7280] font-bold leading-relaxed text-lg">
+            <div className="px-8 pb-7 text-sm text-[#667085] leading-relaxed">
               {answer}
             </div>
           </motion.div>
@@ -52,24 +67,25 @@ const FAQItem: React.FC<{ question: string, answer: string }> = ({ question, ans
   );
 };
 
+
 const LandingPage: React.FC = () => {
   return (
-    <div className="relative bg-[#FFFFFF] font-sans selection:bg-[#4C7FF8]/20">
-      
+    <div className="relative bg-background font-body selection:bg-brand-start/20">
+
       {/* Background Decorator Particles */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            animate={{ 
+            animate={{
               y: [0, -100, 0],
               x: [0, 50, 0],
               opacity: [0.1, 0.3, 0.1]
             }}
-            transition={{ 
-              duration: 15 + i * 2, 
-              repeat: Infinity, 
-              ease: "linear" 
+            transition={{
+              duration: 15 + i * 2,
+              repeat: Infinity,
+              ease: "linear"
             }}
             className="absolute rounded-full blur-3xl"
             style={{
@@ -86,102 +102,110 @@ const LandingPage: React.FC = () => {
       </div>
 
       <div className="relative z-10">
-        
+
         {/* SECTION 0: HERO */}
-        <section className="relative min-h-screen flex items-center pt-32 pb-24 px-6 overflow-hidden">
-          <div className="max-w-7xl mx-auto w-full text-center">
-            {/* Top Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-[#E3E8FF] shadow-[0_8px_32px_rgba(0,0,0,0.04)] mb-10 cursor-default group"
-            >
-              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#6D5CEB]/10 group-hover:bg-[#6D5CEB]/20 transition-colors">
-                <Stars className="w-3 h-3 text-[#6D5CEB]" />
-              </div>
-              <span className="text-sm font-bold text-[#1F2E66] tracking-tight">AI Agency, Delivered as a Platform</span>
-            </motion.div>
+        <section className="relative overflow-hidden bg-[#F8FAFF]">
+          {/* Soft background glow */}
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(109,92,235,0.12),transparent_60%)]" />
+
+          <div className="section text-center py-16 md:py-20">
+
+            {/* Top badge */}
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full
+                    bg-white border border-slate-200 text-xs font-medium
+                    text-brand-start mb-10">
+              AI Agency, Delivered as a Platform
+            </div>
 
             {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="text-6xl md:text-8xl font-[900] tracking-tight leading-[1.05] text-[#1F2E66] mb-8"
-            >
-              Your always-on
-              <br />
-              <span className="bg-gradient-to-r from-[#6D5CEB] via-[#4C7FF8] to-[#B197FC] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-flow pb-3 inline-block">
-                AI marketing team
+            <h1 className="hero-title mb-6">
+              Your always-on{" "}
+              <span className="hero-gradient-text">
+                AI marketing
+                team
               </span>
-            </motion.h1>
+            </h1>
 
+            {/* Subtitle */}
+            <p className="hero-subtitle max-w-xl mx-auto mb-10">
+              Digibility plans, creates, and runs campaigns across social, SEO,
+              email, and ads — so you get agency-level outcomes without agency cost
+              or chaos. You approve; we execute.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+              <button className="btn-primary-pill">
+                Start Free 14-Day Trial →
+              </button>
+              <button className="btn-outline-pill">
+                See how it works
+              </button>
+            </div>
+
+            {/* Trust row */}
+            <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-600 mt-6">
+              <span className="trust-chip">✔ First post in 24h</span>
+              <span className="trust-chip">✔ Replaces 5–8 tools</span>
+              <span className="trust-chip">✔ Human review on key items</span>
+              <span className="trust-chip">✔ OAuth only</span>
+            </div>
+
+            {/* Bottom tagline */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="max-w-3xl mx-auto text-lg md:text-xl text-[#6B7280] font-medium leading-relaxed mb-12 px-4"
-            >
-              Digibility plans, creates, schedules, and tracks your entire digital presence — with AI speed and human precision.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20"
-            >
-              <motion.button
-                whileHover={{ scale: 1.03, boxShadow: "0 25px 50px -12px rgba(109,92,235,0.4)" }}
-                whileTap={{ scale: 0.98 }}
-                className="px-10 py-5 rounded-2xl bg-gradient-to-r from-[#6D5CEB] to-[#4C7FF8] text-white font-bold text-lg flex items-center gap-3 transition-all"
-              >
-                Start Free 14-Day Trial
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.03, backgroundColor: "white" }}
-                whileTap={{ scale: 0.98 }}
-                className="px-10 py-5 rounded-2xl border-2 border-[#E3E8FF] bg-white/60 backdrop-blur-md text-[#1F2E66] font-bold text-lg transition-all"
-              >
-                See How it Works
-              </motion.button>
-            </motion.div>
-
-            {/* Trust chips */}
-            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 1.5 }}
-              className="flex flex-wrap items-center justify-center gap-6"
+              transition={{ delay: 0.8 }}
+              className="mt-4 text-xs text-slate-400 tracking-wide"
             >
-              {[
-                { label: "First post in 24h", icon: Zap, color: "#6D5CEB" },
-                { label: "Replaces 5–8 tools", icon: Layout, color: "#4C7FF8" },
-                { label: "Human review", icon: Sparkles, color: "#B197FC" },
-                { label: "OAuth only", icon: ShieldCheck, color: "#4CC9F0" }
-              ].map((chip, idx) => (
-                <div key={idx} className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/80 border border-[#E3E8FF] shadow-sm">
-                  <chip.icon className="w-4 h-4" style={{ color: chip.color }} />
-                  <span className="text-sm font-bold text-[#1F2E66]">{chip.label}</span>
-                </div>
-              ))}
-            </motion.div>
+              Plan • Create • Run • Prove ROI
+            </motion.p>
           </div>
+          <div className="mt-10 h-px w-24 mx-auto bg-gradient-to-r from-transparent via-[#6D5CEB]/40 to-transparent" />
+
         </section>
 
+{/* SECTION 0.5: TRUST / SOCIAL PROOF */}
+<section className="py-16 bg-white">
+  <div className="max-w-6xl mx-auto px-6 text-center">
+    
+    {/* Trust headline */}
+    <p className="text-sm text-slate-400 mb-10">
+      Trusted by early teams across tech, services, and D2C.
+    </p>
+
+    {/* Logo row */}
+    <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+      {[...Array(7)].map((_, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.05 }}
+          className="h-10 w-24 md:w-28 bg-slate-100 rounded-md"
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
         {/* SECTION 1: One platform, All channels */}
-        <section className="py-32 px-6">
+        <section className="py-24 px-6">
           <div className="max-w-7xl mx-auto">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-black text-[#1F2E66] text-center mb-20"
+              className="text-[28px] md:text-[36px] font-semibold text-[#424A66] text-center tracking-tight mb-14"
             >
               One platform, All channels
             </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6
+">
               {[
                 { title: "Social Media", status: "Live", icon: Globe, statusColor: "text-green-500 bg-green-50" },
                 { title: "SEO", status: "Next", icon: Search, statusColor: "text-gray-400 bg-gray-50" },
@@ -190,20 +214,41 @@ const LandingPage: React.FC = () => {
               ].map((card, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(76,127,248,0.12)" }}
-                  className="bg-white/80 backdrop-blur-xl p-10 rounded-[2.5rem] border border-[#E3E8FF] shadow-sm flex flex-col items-center text-center group transition-all"
+                  transition={{ delay: i * 0.06 }}
+                  className={`rounded-xl bg-white p-6 border
+    ${i === 0 ? "border-[#6D5CEB]" : "border-slate-200"}
+    shadow-sm`}
                 >
-                  <div className="w-16 h-16 rounded-3xl bg-[#F6F8FF] flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
-                    <card.icon className="w-8 h-8 text-[#4C7FF8]" />
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-lg bg-[#EEF2FF] flex items-center justify-center">
+                      <card.icon className="w-4 h-4 text-[#6D5CEB]" />
+                    </div>
+                    <h3 className="text-sm font-medium text-slate-800">
+                      {card.title}
+                    </h3>
+                    <span
+                      className={`ml-auto text-xs px-2 py-0.5 rounded-full
+        ${card.status === "Live"
+                          ? "bg-green-100 text-green-600"
+                          : "bg-slate-100 text-slate-400"}`}
+                    >
+                      {card.status}
+                    </span>
                   </div>
-                  <h3 className="text-2xl font-black text-[#1F2E66] mb-4">{card.title}</h3>
-                  <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest ${card.statusColor}`}>
-                    {card.status}
-                  </span>
+
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    {card.title === "Social Media" &&
+                      "Plan, draft, schedule, prove ROI."}
+                    {card.title === "SEO" &&
+                      "Scan site, plan keywords, feed content."}
+                    {card.title === "Email" &&
+                      "Brand-voice newsletters, send-time suggestions."}
+                    {card.title === "Ads" &&
+                      "Boost winners, auto-variants, clear spend."}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -211,31 +256,38 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* SECTION 2: Why most marketing feels broken */}
-        <section className="py-32 px-6">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-24 px-6">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Heading */}
+            <h2 className="text-[28px] md:text-[34px] font-semibold text-[#4B5568] text-center mb-16">
+              Why most marketing feels broken
+            </h2>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+
               {/* The Problem */}
               <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                className="bg-[#FFF5F5]/70 backdrop-blur-xl border border-red-100 p-12 rounded-[2.5rem] shadow-sm"
+                className="rounded-2xl border border-[#FDE2E2] bg-[#FFF8F8] p-10"
               >
-                <h3 className="text-2xl font-black text-[#EF4444] mb-10 flex items-center gap-4">
-                  <X className="w-8 h-8 p-1.5 rounded-lg bg-red-100" />
+                <h3 className="text-lg font-semibold text-[#B42318] mb-8">
                   The Problem
                 </h3>
-                <div className="space-y-8">
+
+                <div className="space-y-6">
                   {[
-                    { emoji: "⛓️", text: "Fragmented tools that don't talk" },
-                    { emoji: "🐢", text: "Painfully slow manual processes" },
-                    { emoji: "💸", text: "High overhead costs & agency fees" },
-                    { emoji: "🎲", text: "Guesswork instead of data-driven ROI" }
+                    { emoji: "🔗", text: "Fragmented stack: 5–8 tools, zero continuity." },
+                    { emoji: "🐢", text: "Slow output: briefs → drafts → edits → missed windows." },
+                    { emoji: "💸", text: "High cost: agency retainers or growing payroll." },
+                    { emoji: "🎲", text: "Guesswork: weak attribution and repeatability." }
                   ].map((row, idx) => (
-                    <div key={idx} className="flex items-center gap-6">
-                      <span className="text-3xl grayscale group-hover:grayscale-0 transition-all">{row.emoji}</span>
-                      <p className="text-lg font-semibold text-[#6B7280]">{row.text}</p>
+                    <div key={idx} className="flex items-start gap-4">
+                      <span className="text-xl leading-none">{row.emoji}</span>
+                      <p className="text-sm text-[#667085] leading-relaxed">
+                        {row.text}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -243,262 +295,490 @@ const LandingPage: React.FC = () => {
 
               {/* The Digibility Way */}
               <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                className="bg-[#F4FFF7]/70 backdrop-blur-xl border border-green-100 p-12 rounded-[2.5rem] shadow-[0_20px_50px_-15px_rgba(74,222,128,0.1)]"
+                className="rounded-2xl border border-[#D1FADF] bg-[#F6FFFB] p-10"
               >
-                <h3 className="text-2xl font-black text-[#4ADE80] mb-10 flex items-center gap-4">
-                  <Check className="w-8 h-8 p-1.5 rounded-lg bg-green-100" />
+                <h3 className="text-lg font-semibold text-[#027A48] mb-8">
                   The Digibility Way
                 </h3>
-                <div className="space-y-8">
+
+                <div className="space-y-6">
                   {[
-                    { emoji: "⚡", text: "One seamless, automated workflow" },
-                    { emoji: "📅", text: "10x faster execution with AI" },
-                    { emoji: "📈", text: "Lower operational cost than retainers" },
-                    { emoji: "💰", text: "Crystal clear attribution and ROI" }
+                    { emoji: "🔁", text: "One flow: plan → create → run → measure." },
+                    { emoji: "⚡", text: "Always-on team: AI speed with human checks." },
+                    { emoji: "💰", text: "Lower total cost: replace agencies and extra tools." },
+                    { emoji: "📊", text: "Clear ROI: UTMs by post, next-month recommendations." }
                   ].map((row, idx) => (
-                    <div key={idx} className="flex items-center gap-6">
-                      <span className="text-3xl">{row.emoji}</span>
-                      <p className="text-lg font-semibold text-[#1F2E66]">{row.text}</p>
+                    <div key={idx} className="flex items-start gap-4">
+                      <span className="text-xl leading-none">{row.emoji}</span>
+                      <p className="text-sm text-[#475467] leading-relaxed">
+                        {row.text}
+                      </p>
                     </div>
                   ))}
                 </div>
               </motion.div>
+
             </div>
           </div>
         </section>
 
+
         {/* SECTION 3: Metrics Row */}
-        <section className="py-24 px-6">
+        <section className="py-20 px-6">
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { label: "Time saved", value: "Cut ops to <1 hr/week", icon: Clock },
-              { label: "Cost reduced", value: "60–75% lower vs agency", icon: DollarSign },
-              { label: "Speed to live", value: "First post in 24 hours", icon: Zap }
+              { label: "Time saved", value: "Cut ops to <1 hour/week" },
+              { label: "Cost reduced", value: "60–75% lower than agency retainers" },
+              { label: "Speed to live", value: "First post in 24 hours after approval" }
             ].map((metric, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white/70 backdrop-blur-xl p-12 rounded-[2.5rem] border border-[#E3E8FF] text-center shadow-sm"
+                className="rounded-2xl border border-[#E0E7FF] bg-[#F8FAFF] px-8 py-10 text-center"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#4C7FF8]/10 text-[#4C7FF8] flex items-center justify-center mx-auto mb-6">
-                  <metric.icon className="w-6 h-6" />
-                </div>
-                <h4 className="text-sm font-black text-[#6D5CEB] mb-3 uppercase tracking-wider">{metric.label}</h4>
-                <p className="text-2xl font-black text-[#1F2E66] leading-tight">{metric.value}</p>
+                <p className="text-sm font-medium text-[#667085] mb-3">
+                  {metric.label}
+                </p>
+
+                <p className="text-xl md:text-2xl font-semibold text-[#344054] leading-snug">
+                  {metric.value}
+                </p>
               </motion.div>
             ))}
           </div>
         </section>
 
+
         {/* SECTION 4: How Digibility Works */}
-        <section className="py-32 px-6">
+        <section className="py-24 px-6 bg-[#F8FAFF]">
           <div className="max-w-7xl mx-auto">
-            <motion.h2 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+
+            {/* Heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-black text-[#1F2E66] text-center mb-24"
+              className="text-[28px] md:text-[34px] font-semibold text-[#3F4A6B] text-center mb-16"
             >
               How Digibility works
             </motion.h2>
-            <div className="flex flex-col md:flex-row justify-between items-start gap-12 relative">
+
+            {/* Steps Row */}
+            <div className="relative grid grid-cols-1 md:grid-cols-5 gap-6">
+
               {[
-                { title: "Plan", desc: "Strategy driven by goals." },
-                { title: "Create", desc: "AI builds assets instantly." },
-                { title: "Run", desc: "Automated distribution." },
-                { title: "Prove", desc: "Verify performance." },
-                { title: "Learn", desc: "Optimize based on results." }
+                {
+                  title: "Plan",
+                  desc: "Connect site + socials. We scan your brand and competitors, then propose a 30-day plan per channel."
+                },
+                {
+                  title: "Create",
+                  desc: "AI drafts on-brand statics, carousels, and reel scripts. Humans review key items. You approve."
+                },
+                {
+                  title: "Run",
+                  desc: "Best-time scheduling per platform with failsafe retries."
+                },
+                {
+                  title: "Prove",
+                  desc: "UTMs per post. See what worked and why."
+                },
+                {
+                  title: "Learn",
+                  desc: "Winning posts feed next month’s strategy."
+                }
               ].map((step, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="flex-1 flex flex-col items-center text-center group relative z-10"
+                  transition={{ delay: i * 0.05 }}
+                  className="relative bg-white border border-[#E4E7FF] rounded-2xl px-6 py-8"
                 >
-                  <motion.div 
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-24 h-24 rounded-full bg-white/70 backdrop-blur-md border border-[#E3E8FF] shadow-lg flex items-center justify-center mb-8 relative"
-                  >
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#6D5CEB] to-[#4C7FF8] flex items-center justify-center text-white text-2xl font-black">
-                      {i + 1}
+                  {/* Step number */}
+                  <div className="w-9 h-9 rounded-full bg-[#4C7FF8] text-white flex items-center justify-center font-semibold text-sm mb-4">
+                    {i + 1}
+                  </div>
+
+                  <h3 className="text-base font-semibold text-[#344054] mb-2">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-sm text-[#667085] leading-relaxed">
+                    {step.desc}
+                  </p>
+
+                  {/* Arrow connector (desktop only) */}
+                  {i < 4 && (
+                    <div className="hidden md:flex absolute -right-7 top-1/2 -translate-y-1/2">
+                      <ArrowRight className="w-6 h-6 text-[#4C7FF8]" />
                     </div>
-                    {i < 4 && (
-                      <div className="hidden lg:block absolute -right-12 top-1/2 -translate-y-1/2 text-[#6D5CEB]/30">
-                        <MoveRight className="w-8 h-8" />
-                      </div>
-                    )}
-                  </motion.div>
-                  <h3 className="text-xl font-black text-[#1F2E66] mb-3">{step.title}</h3>
-                  <p className="text-sm text-[#6B7280] font-medium leading-relaxed max-w-[150px]">{step.desc}</p>
+
+                  )}
                 </motion.div>
               ))}
             </div>
-            
-            <motion.div 
+
+            {/* CTA */}
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="mt-20 text-center"
+              className="mt-16 text-center"
             >
-              <button className="px-10 py-4 rounded-full border-2 border-[#E3E8FF] text-[#1F2E66] font-bold hover:border-[#6D5CEB]/40 hover:shadow-lg transition-all group flex items-center gap-2 mx-auto">
-                See the feature tour
-                <MousePointer2 className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <button className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#3F4A6B] text-[#3F4A6B] font-medium hover:bg-[#EEF2FF] transition">
+                See the feature tour →
               </button>
             </motion.div>
+
           </div>
         </section>
+
+
 
         {/* SECTION 5: Outcomes You Can Measure */}
-        <section className="py-32 px-6 bg-[#F8FAFF]/50 backdrop-blur-md border-y border-[#E3E8FF]">
+        <section className="py-20 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-black text-[#1F2E66] text-center mb-20">Outcomes you can measure</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            {/* Heading */}
+            <h2 className="text-[26px] md:text-[32px] font-medium text-[#475467] text-center mb-14">
+              Outcomes you can measure
+            </h2>
+
+            {/* Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: "Solo Founder", icon: MousePointer2 },
-                { title: "Small Team", icon: Users },
-                { title: "SMB replacing agency", icon: Award },
-                { title: "Local & D2C", icon: Globe }
+                {
+                  title: "Solo Founder",
+                  desc: "Consistent presence in <1 hr/week. More qualified leads.",
+                  highlight: true,
+                },
+                {
+                  title: "Small Team",
+                  desc: "2–3× output in one workflow. Clean attribution for reports.",
+                },
+                {
+                  title: "SMB replacing agency",
+                  desc: "60–75% lower cost with full control and transparency.",
+                },
+                {
+                  title: "Local & D2C",
+                  desc: "On-time IG + GBP. Simple analytics anyone can read.",
+                },
               ].map((item, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ y: -8, backgroundColor: 'white', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.05)' }}
-                  className="bg-white/40 p-12 rounded-[2.5rem] border border-[#E3E8FF] text-center transition-all cursor-pointer"
+                  className={`
+            rounded-xl border bg-white
+            px-6 py-7
+            ${item.highlight
+                      ? "border-[#C7C2FF]"
+                      : "border-[#E5E7EB]"
+                    }
+          `}
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#4C7FF8]/10 flex items-center justify-center mx-auto mb-8 text-[#4C7FF8]">
-                    <item.icon className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-xl font-black text-[#1F2E66]">{item.title}</h3>
-                  <p className="mt-4 text-xs font-black text-[#4C7FF8] uppercase tracking-widest">Growth Track</p>
-                </motion.div>
+                  <h3 className="text-sm font-medium text-[#344054] mb-2">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-sm text-[#667085] leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
               ))}
             </div>
+
           </div>
         </section>
 
+
+
         {/* SECTION 6: Compare your options */}
-        <section className="py-32 px-6">
+        <section className="py-24 px-6 bg-[#F8FAFF]">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-black text-[#1F2E66] text-center mb-20">Compare your options</h2>
-            <div className="overflow-hidden rounded-[2.5rem] border border-[#E3E8FF] bg-white/80 backdrop-blur-xl shadow-2xl shadow-[#4C7FF8]/5">
+
+            {/* Heading */}
+            <h2 className="text-[28px] md:text-[34px] font-semibold text-[#3F4A6B] text-center mb-16">
+              Compare your options
+            </h2>
+
+            {/* Table Card */}
+            <div className="overflow-hidden rounded-2xl bg-white shadow-[0_8px_24px_rgba(16,24,40,0.08)]">
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[900px] border-collapse">
+                <table className="w-full text-sm">
+
+                  {/* Header */}
                   <thead>
-                    <tr className="bg-gray-50/50">
-                      <th className="p-10 text-left text-sm font-bold text-gray-400">Features</th>
-                      <th className="p-10 text-center text-sm font-bold text-gray-600">DIY</th>
-                      <th className="p-10 text-center text-sm font-bold text-gray-600">Freelancer</th>
-                      <th className="p-10 text-center text-sm font-bold text-gray-600">Agency</th>
-                      <th className="p-10 text-center text-sm font-bold text-gray-600">Tool Stack</th>
-                      <th className="p-0 text-center bg-gradient-to-b from-[#6D5CEB] to-[#4C7FF8] text-white relative">
-                        <div className="py-10 px-8 font-black text-xl relative z-10">Digibility</div>
-                        <div className="absolute inset-0 bg-white/10" />
+                    <tr className="border-b border-[#E5E7EB]">
+                      <th className="text-left px-6 py-4 font-medium text-[#475467]">
+                        Features
+                      </th>
+                      {["DIY", "Freelancer", "Agency", "Tool Stack"].map((h) => (
+                        <th
+                          key={h}
+                          className="text-center px-6 py-4 font-medium text-[#475467]"
+                        >
+                          {h}
+                        </th>
+                      ))}
+                      <th className="text-center px-6 py-4 font-semibold text-[#4C7FF8] bg-[#EEF2FF]">
+                        Digibility
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#F0F4FF]">
+
+                  {/* Body */}
+                  <tbody>
                     {[
-                      { f: "Cost to operate", diy: "Free-ish", fl: "$2k+/mo", ag: "$5k+/mo", ts: "$500/mo", digi: "Low fixed" },
-                      { f: "Speed to publish", diy: "Slow", fl: "Medium", ag: "Slow", ts: "Variable", digi: "Instant" },
-                      { f: "Consistency", diy: "Low", fl: "High", ag: "Medium", ts: "High", digi: "Perfect" },
-                      { f: "Control & transparency", diy: "Total", fl: "Medium", ag: "Low", ts: "High", digi: "Total" },
-                      { f: "ROI visibility", diy: "None", fl: "Low", ag: "High", ts: "High", digi: "High" },
-                      { f: "Scale across channels", diy: "Hard", fl: "Manual", ag: "Slow", ts: "Hard", digi: "Seamless" }
+                      {
+                        f: "Cost to operate",
+                        diy: "$–",
+                        fl: "$$",
+                        ag: "$$$$",
+                        ts: "$$",
+                        digi: "$$",
+                      },
+                      {
+                        f: "Speed to publish",
+                        diy: "Slow",
+                        fl: "Varies",
+                        ag: "Slow",
+                        ts: "Medium",
+                        digi: "Fast",
+                      },
+                      {
+                        f: "Consistency",
+                        diy: "Low",
+                        fl: "Medium",
+                        ag: "Medium",
+                        ts: "Medium",
+                        digi: "High",
+                      },
+                      {
+                        f: "Control & transparency",
+                        diy: "High",
+                        fl: "Medium",
+                        ag: "Low",
+                        ts: "Medium",
+                        digi: "High",
+                      },
+                      {
+                        f: "ROI visibility",
+                        diy: "Low",
+                        fl: "Low",
+                        ag: "Medium",
+                        ts: "Medium",
+                        digi: "High",
+                      },
+                      {
+                        f: "Scale across channels",
+                        diy: "Hard",
+                        fl: "Hard",
+                        ag: "Costly",
+                        ts: "Complex",
+                        digi: "Simple",
+                      },
                     ].map((row, i) => (
-                      <tr key={i} className="hover:bg-[#F8FAFF] transition-colors group">
-                        <td className="p-8 text-sm font-bold text-[#1F2E66]">{row.f}</td>
-                        <td className="p-8 text-center text-sm text-red-500 font-semibold">{row.diy}</td>
-                        <td className="p-8 text-center text-sm text-gray-500 font-medium">{row.fl}</td>
-                        <td className="p-8 text-center text-sm text-gray-500 font-medium">{row.ag}</td>
-                        <td className="p-8 text-center text-sm text-gray-500 font-medium">{row.ts}</td>
-                        <td className="p-8 text-center text-sm font-black text-[#4C7FF8] bg-[#F8FAFF]">{row.digi}</td>
+                      <tr
+                        key={i}
+                        className="border-b border-[#F2F4F7] last:border-none"
+                      >
+                        <td className="px-6 py-4 text-[#344054] font-medium">
+                          {row.f}
+                        </td>
+
+                        {/* DIY */}
+                        <td className="px-6 py-4 text-center text-red-500">
+                          {row.diy}
+                        </td>
+
+                        {/* Freelancer */}
+                        <td className="px-6 py-4 text-center text-red-500">
+                          {row.fl}
+                        </td>
+
+                        {/* Agency */}
+                        <td className="px-6 py-4 text-center text-red-500">
+                          {row.ag}
+                        </td>
+
+                        {/* Tool Stack */}
+                        <td className="px-6 py-4 text-center text-[#667085]">
+                          {row.ts}
+                        </td>
+
+                        {/* Digibility */}
+                        <td className="px-6 py-4 text-center font-semibold text-green-600 bg-[#F5F8FF]">
+                          {row.digi}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
+
                 </table>
               </div>
             </div>
+
+            {/* CTA */}
+            <div className="mt-16 text-center">
+              <button className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#4C7FF8] text-white font-medium hover:bg-[#3B6FE3] transition">
+                Start Free 14-Day Trial →
+              </button>
+            </div>
+
           </div>
         </section>
 
         {/* SECTION 7: Get value in 60 seconds */}
-        <section className="py-32 px-6 bg-[#F6F8FF]/80">
+        <section className="py-24 px-6 bg-white">
           <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-black text-[#1F2E66] mb-16">Get value in 60 seconds</h2>
-            <div className="flex flex-wrap justify-center gap-6 mb-16">
+
+            {/* Heading */}
+            <h2 className="text-[28px] md:text-[34px] font-semibold text-[#475467] mb-14">
+              Get value in 60 seconds
+            </h2>
+
+            {/* Pills */}
+            <div className="flex flex-wrap justify-center gap-5 mb-12">
               {[
-                "Caption Generator", "Hashtag Generator", "Best-Time Demo", 
-                "UTM Builder", "Hooks", "Ideas from URL", "30-Day Calendar"
+                "Caption Generator",
+                "Hashtag Generator",
+                "Best-Time Demo",
+                "UTM Builder",
+                "Hooks",
+                "Ideas from URL",
+                "30-Day Calendar (CSV)",
               ].map((pill, i) => (
-                <motion.div
+                <div
                   key={i}
-                  whileHover={{ scale: 1.05, y: -4, borderColor: "#4C7FF8" }}
-                  className="px-10 py-5 bg-white rounded-full border border-[#E3E8FF] shadow-sm text-base font-black text-[#1F2E66] cursor-pointer transition-all"
+                  className="
+            px-8 py-5
+            bg-[#F8FAFF]
+            border border-[#EEF2FF]
+            rounded-2xl
+            text-sm font-medium text-[#344054]
+          "
                 >
                   {pill}
-                </motion.div>
+                </div>
               ))}
             </div>
-            <p className="text-[#6B7280] font-bold text-xl italic">
+
+            {/* Footnote */}
+            <p className="text-sm text-[#98A2B3]">
               Results unlock after name, work email, and WhatsApp.
             </p>
+
           </div>
         </section>
 
-        {/* SECTION 8: Built For Trust */}
-        <section className="py-32 px-6">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-black text-[#1F2E66] text-center mb-20">Built For Trust</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+
+        {/* SECTION 8: Built for trust */}
+        <section className="py-24 px-6 bg-[#FAFBFF]">
+          <div className="max-w-7xl mx-auto text-center">
+
+            {/* Heading */}
+            <h2 className="text-[28px] md:text-[34px] font-semibold text-[#475467] mb-14">
+              Built for trust
+            </h2>
+
+            {/* Trust pills */}
+            <div className="flex flex-wrap justify-center gap-6 mb-10">
               {[
-                { label: "OAuth only", icon: Key, desc: "No passwords required." },
-                { label: "Encryption", icon: Lock, desc: "At rest + transit." },
-                { label: "Role-based access", icon: Database, desc: "Full audit logs." },
-                { label: "Export/Delete", icon: Zap, desc: "On demand." },
-                { label: "Sub-processors", icon: ShieldCheck, desc: "Publicly listed." }
+                { label: "OAuth only (no social passwords)", icon: Key },
+                { label: "Encryption in transit and at rest", icon: Lock },
+                { label: "Role-based access and audit log", icon: Database },
+                { label: "Export/delete on request", icon: Zap },
+                { label: "Sub-processors listed and vetted", icon: ShieldCheck },
               ].map((item, i) => (
-                <motion.div 
+                <div
                   key={i}
-                  whileHover={{ y: -5 }}
-                  className="bg-white/80 backdrop-blur-xl p-10 rounded-[2.5rem] border border-[#E3E8FF] shadow-sm text-center"
+                  className="
+            flex items-center gap-3
+            px-5 py-4
+            bg-white
+            border border-[#EEF2FF]
+            rounded-xl
+            text-sm font-medium text-[#344054]
+          "
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[#F6F8FF] flex items-center justify-center mx-auto mb-8">
-                    <item.icon className="w-7 h-7 text-[#6D5CEB]" />
-                  </div>
-                  <h3 className="text-base font-black text-[#1F2E66] mb-3">{item.label}</h3>
-                  <p className="text-xs text-[#6B7280] font-bold leading-relaxed">{item.desc}</p>
-                </motion.div>
+                  <item.icon className="w-4 h-4 text-[#4C7FF8]" />
+                  {item.label}
+                </div>
               ))}
             </div>
+
+            {/* Legal links */}
+            <div className="flex justify-center gap-6 text-sm text-[#4C7FF8]">
+              {["Privacy", "Terms", "Acceptable Use", "Sub-processors", "DPA"].map(
+                (link) => (
+                  <a
+                    key={link}
+                    href="#"
+                    className="hover:underline"
+                  >
+                    {link}
+                  </a>
+                )
+              )}
+            </div>
+
           </div>
         </section>
 
         {/* SECTION 9: Frequently Asked Questions */}
-        <section className="py-32 px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-black text-[#1F2E66] text-center mb-20">Frequently Asked Questions</h2>
+        <section className="py-28 px-6 bg-white">
+          <div className="max-w-4xl mx-auto">
+
+            <h2 className="text-[30px] md:text-[36px] font-semibold text-[#475467] text-center mb-16">
+              Frequently Asked Questions
+            </h2>
+
             <div className="space-y-6">
               {[
-                { q: "Is Digibility an agency?", a: "No, Digibility is an AI-powered platform designed to replace expensive agency retainers by automating your entire marketing workflow with AI speed and human quality checks." },
-                { q: "Which channels are live today?", a: "Full social media automation is live for LinkedIn, X, Instagram, and Facebook. SEO and Email channels are launching in Q4." },
-                { q: "Do I approve content before it posts?", a: "Yes. You maintain 100% control. Our AI creates premium drafts, and nothing goes live without your manual approval in our dash." },
-                { q: "How fast can I see results?", a: "Your first premium post goes live within 24 hours of account connection. Most users see uplift in engagement within week one." },
-                { q: "What’s included vs paid?", a: "All standard AI generation and scheduling tools are included. High-res video creation and deep-crawl SEO audits use a fair credit system." }
+                {
+                  q: "Is Digibility an agency?",
+                  a: "No. Digibility is an AI-powered platform designed to replace agencies by automating planning, creation, publishing, and measurement.",
+                },
+                {
+                  q: "Which channels are live today?",
+                  a: "Social media automation is live for LinkedIn, X, Instagram, and Facebook. More channels are coming soon.",
+                },
+                {
+                  q: "Do I approve content before it posts?",
+                  a: "Yes. Nothing goes live without your explicit approval.",
+                },
+                {
+                  q: "How fast can I see results?",
+                  a: "Your first post typically goes live within 24 hours. Engagement improvements often start in week one.",
+                },
+                {
+                  q: "What’s included vs paid as credits?",
+                  a: "Standard content and scheduling are included. Advanced video and deep SEO use credits.",
+                },
+                {
+                  q: "Can I cancel anytime?",
+                  a: "Yes. There are no long-term contracts.",
+                },
+                {
+                  q: "How do you measure ROI?",
+                  a: "We use UTMs, per-post tracking, and monthly performance summaries.",
+                },
+                {
+                  q: "How is my data protected?",
+                  a: "OAuth-only access, encryption at rest and in transit, and strict role-based controls.",
+                },
               ].map((faq, i) => (
                 <FAQItem key={i} question={faq.q} answer={faq.a} />
               ))}
             </div>
+
           </div>
         </section>
 

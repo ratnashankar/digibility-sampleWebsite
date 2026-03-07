@@ -11,7 +11,7 @@ export const DigiLoader: React.FC<DigiLoaderProps> = ({
   size = 48,
   darkMode = false,
 }) => {
-  const gradientId = `gradient-${darkMode ? "dark" : "light"}`;
+  const gradientId = `digi-gradient-${darkMode ? "dark" : "light"}`;
 
   return (
     <div
@@ -23,8 +23,8 @@ export const DigiLoader: React.FC<DigiLoaderProps> = ({
         height={size}
         viewBox="0 0 48 48"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="animate-[digiLoaderScale_0.8s_cubic-bezier(0.4,0,0.2,1)_infinite_alternate]"
+        aria-hidden="true"
+        className="digi-loader"
       >
         <defs>
           <linearGradient id={gradientId} x1="12" y1="24" x2="36" y2="16">
@@ -39,33 +39,9 @@ export const DigiLoader: React.FC<DigiLoaderProps> = ({
           strokeWidth="4"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="animate-[digiCheckStroke_1.2s_cubic-bezier(0.65,0,0.35,1)_infinite]"
+          className="digi-loader-path"
         />
       </svg>
-
-      {/* Custom Tailwind animations */}
-      <style>
-        {`
-          @keyframes digiCheckStroke {
-            0% { stroke-dashoffset: 60; }
-            50% { stroke-dashoffset: 0; }
-            100% { stroke-dashoffset: -60; }
-          }
-
-          @keyframes digiLoaderScale {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-          }
-
-          @media (prefers-reduced-motion: reduce) {
-            .animate-[digiLoaderScale_0.8s_cubic-bezier(0.4,0,0.2,1)_infinite_alternate],
-            .animate-[digiCheckStroke_1.2s_cubic-bezier(0.65,0,0.35,1)_infinite] {
-              animation: none !important;
-            }
-          }
-        `}
-      </style>
     </div>
   );
 };

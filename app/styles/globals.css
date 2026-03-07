@@ -2,6 +2,381 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Inter', sans-serif;
+/* =========================================
+   DIGIBILITY — BASE OVERRIDES
+   Safe Tailwind overrides (no breakage)
+========================================= */
+@layer base {
+  html {
+    background-color: theme(colors.background);
+    color: #0f172a;
+  }
+
+  body {
+    @apply font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+/* =========================================
+   DIGIBILITY — COMPONENT PRIMITIVES
+========================================= */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center
+           font-semibold text-white
+           px-6 py-3
+           rounded-pill
+           transition-all
+           bg-gradient-to-r from-brand-start to-brand-end;
+  }
+
+  .btn-primary:hover {
+    @apply shadow-soft -translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center
+           px-6 py-3
+           rounded-pill
+           border border-primary
+           text-primary
+           transition-all;
+  }
+
+  .btn-secondary:hover {
+    @apply shadow-soft;
+  }
+}
+
+@layer components {
+  .section {
+    @apply max-w-7xl mx-auto px-6 py-20;
+  }
+
+  .eyebrow {
+    @apply uppercase tracking-widest text-xs font-semibold text-brand-start;
+  }
+
+  .hero-title {
+    @apply text-4xl md:text-6xl font-heading leading-tight;
+  }
+
+  .hero-subtitle {
+    @apply mt-4 text-lg text-slate-600 max-w-2xl;
+  }
+}
+
+@layer components {
+  /* Generic elevated card */
+  .card {
+    @apply bg-white/80 backdrop-blur-xl
+           border border-slate-200
+           rounded-[2.5rem]
+           shadow-sm
+           transition-all;
+  }
+
+  /* Card with hover lift */
+  .card-hover {
+    @apply hover:-translate-y-2 hover:shadow-xl;
+  }
+
+  /* Card icon wrapper */
+  .card-icon {
+    @apply w-16 h-16 rounded-3xl
+           bg-background
+           flex items-center justify-center
+           transition-transform duration-500;
+  }
+
+  /* Card title */
+  .card-title {
+    @apply text-2xl font-black text-primary;
+  }
+
+  /* Card badge (Live / Next) */
+  .card-badge {
+    @apply px-4 py-1.5 rounded-full
+           text-xs font-black uppercase tracking-widest;
+  }
+
+  .card-badge-live {
+    @apply text-green-600 bg-green-50;
+  }
+
+  .card-badge-next {
+    @apply text-slate-400 bg-slate-50;
+  }
+}
+
+@layer components {
+  /* Product tour step */
+  .tour-step {
+    @apply card p-8 flex flex-col items-center text-center relative;
+  }
+
+  .tour-step-number {
+    @apply w-14 h-14 rounded-full
+           bg-gradient-to-br from-brand-start to-brand-end
+           text-white font-black text-xl
+           flex items-center justify-center
+           mb-6;
+  }
+
+  .tour-step-title {
+    @apply text-lg font-black text-primary mb-2;
+  }
+
+  .tour-step-desc {
+    @apply text-sm text-slate-600 font-medium;
+  }
+}
+
+@layer components {
+  /* Persona card */
+  .persona-card {
+    @apply card p-10 text-center cursor-pointer;
+  }
+
+  .persona-card-hover {
+    @apply hover:-translate-y-2 hover:shadow-xl;
+  }
+
+  .persona-icon {
+    @apply w-14 h-14 rounded-2xl
+           bg-brand-start/10
+           text-brand-start
+           flex items-center justify-center
+           mx-auto mb-6;
+  }
+
+  .persona-title {
+    @apply text-xl font-black text-primary;
+  }
+
+  .persona-tag {
+    @apply mt-4 text-xs font-black uppercase tracking-widest
+           text-brand-start;
+  }
+}
+@layer components {
+  /* Comparison table */
+  .compare-table {
+    @apply w-full min-w-[900px] border-collapse text-sm;
+  }
+
+  .compare-th {
+    @apply p-6 text-left font-bold text-slate-400 bg-slate-50;
+  }
+
+  .compare-th-center {
+    @apply p-6 text-center font-bold text-slate-600 bg-slate-50;
+  }
+
+  .compare-td {
+    @apply p-6 text-center text-slate-500 font-medium;
+  }
+
+  .compare-feature {
+    @apply p-6 text-left font-semibold text-primary;
+  }
+
+  /* Digibility highlight column */
+  .compare-digi-th {
+    @apply bg-gradient-to-b from-brand-start to-brand-end
+           text-white text-lg font-black relative;
+  }
+
+  .compare-digi-td {
+    @apply bg-background text-brand-start font-black;
+  }
+
+  /* Row hover */
+  .compare-row {
+    @apply hover:bg-background transition-colors;
+  }
+}
+@layer components {
+  .footer {
+    @apply bg-background border-t border-slate-200;
+  }
+
+  .footer-container {
+    @apply max-w-7xl mx-auto px-6 py-16;
+  }
+
+  .footer-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-10;
+  }
+
+  .footer-title {
+    @apply text-sm font-black text-primary uppercase tracking-widest mb-4;
+  }
+
+  .footer-link {
+    @apply text-sm text-slate-600 hover:text-primary transition;
+  }
+
+  .footer-muted {
+    @apply text-xs text-slate-400;
+  }
+
+  .consent-toggle {
+    @apply flex items-center gap-3 text-sm text-slate-600;
+  }
+}
+
+/* HERO */
+.hero-title {
+  @apply text-4xl md:text-6xl font-semibold tracking-tight text-slate-800;
+}
+
+.hero-gradient-text {
+  @apply bg-gradient-to-r from-[#6D5CEB] to-[#3B82F6]
+         bg-clip-text text-transparent;
+}
+
+.hero-subtitle {
+  @apply text-sm md:text-base text-slate-500 leading-relaxed;
+}
+
+/* Buttons */
+.btn-primary-pill {
+  @apply px-6 py-3 rounded-full text-sm font-medium text-white
+         bg-gradient-to-r from-[#6D5CEB] to-[#3B82F6]
+         hover:opacity-90 transition;
+}
+
+.btn-outline-pill {
+  @apply px-6 py-3 rounded-full text-sm font-medium
+         border border-slate-300 text-slate-700
+         hover:bg-slate-50 transition;
+}
+
+/* Trust chips */
+.trust-chip {
+  @apply px-3 py-1.5 rounded-full bg-white border border-slate-200;
+}
+
+
+
+/* =========================================
+   ACCESSIBILITY & MOTION
+========================================= */
+:focus-visible {
+  outline: 3px solid theme(colors.brand.end);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================================
+   DIGIBILITY LOADER (GLOBAL)
+========================================= */
+.digi-loader {
+  animation: digi-loader-float 2s ease-in-out infinite;
+}
+
+.digi-loader-path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: digi-loader-draw 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes digi-loader-draw {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -60;
+  }
+}
+
+@keyframes digi-loader-float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.05);
+  }
+}
+/* =========================================
+   HEADER (STICKY + SCROLL AWARE)
+========================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background: transparent;
+  transition:
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.site-header--scrolled {
+  background-color: rgba(248, 250, 255, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Header animations */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.test-css {
+  background: red;
+}
+
+/* =========================================
+   MOTION SAFETY — ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
